@@ -239,49 +239,108 @@ class ColorScience {
     }
 
     /**
-     * Unsharp Mask tarzı netlik - Pixel tarzı keskin detay
+     * AGRESIF Unsharp Mask - Pixel tarzı MAXIMUM netlik, ZERO halo
      */
     private fun applyPixelSharpenInPlace(bitmap: Bitmap) {
         try {
             val width = bitmap.width
             val height = bitmap.height
             
-            // Gaussian blur'dan kopya (basitleştirilmiş)
-            val blurred = bitmap.copy(Bitmap.Config.ARGB_8888, false)
+            // 1. Hafif blur (noise reduction) - 3x3 average
+            val blurredPixels = applyFastBoxBlur(bitmap)
             
             val originalPixels = IntArray(width * height)
-            val blurredPixels = IntArray(width * height)
-            
             bitmap.getPixels(originalPixels, 0, width, 0, 0, width, height)
-            blurred.getPixels(blurredPixels, 0, width, 0, 0, width, height)
             
-            val amount = 0.6f // Sharpen strength
-            val threshold = 10 // Edge threshold
+            // AGRESIF parametreler
+            val amount = 2.2f // ÇOK AGRESIF (0.6 -> 2.2)
+            val threshold = 2 // ÇOK DÜŞÜK = her detay (10 -> 2)
+            val maxAmplification = 45 // Halo önleme sınırı
             
             for (i in originalPixels.indices) {
                 val orig = originalPixels[i]
                 val blur = blurredPixels[i]
                 
-                val rDiff = Color.red(orig) - Color.red(blur)
-                val gDiff = Color.green(orig) - Color.green(blur)
-                val bDiff = Color.blue(orig) - Color.blue(blur)
+                val rOrig = Color.red(orig)
+                val gOrig = Color.green(orig)
+                val bOrig = Color.blue(orig)
                 
-                // Sadece edge'leri sharpen et (threshold)
-                if (abs(rDiff) > threshold || abs(gDiff) > threshold || abs(bDiff) > threshold) {
-                    val newR = (Color.red(orig) + rDiff * amount).toInt().coerceIn(0, 255)
-                    val newG = (Color.green(orig) + gDiff * amount).toInt().coerceIn(0, 255)
-                    val newB = (Color.blue(orig) + bDiff * amount).toInt().coerceIn(0, 255)
-                    originalPixels[i] = Color.argb(255, newR, newG, newB)
+                val rBlur = Color.red(blur)
+                val gBlur = Color.green(blur)
+                val bBlur = Color.blue(blur)
+                
+                val rDiff = rOrig - rBlur
+                val gDiff = gOrig - gBlur
+                val bDiff = bOrig - bBlur
+                
+                // Adaptive: Düşük kontrast alanlarda daha agresif, yüksek kontrastta hafif
+                val edgeStrength = maxOf(abs(rDiff), abs(gDiff), abs(bDiff))
+                val adaptiveAmount = if (edgeStrength < 20) amount * 1.3f else amount * 0.8f
+                
+                // Sadece edge'lerde netle ama HER edge'de
+                if (edgeStrength > threshold) {
+                    // Halo önleme: Farkı sınırla ve local değere göre clamp
+                    val rNew = (rOrig + rDiff.coerceIn(-maxAmplification, maxAmplification) * adaptiveAmount)
+                        .toInt().coerceIn(0, 255)
+                    val gNew = (gOrig + gDiff.coerceIn(-maxAmplification, maxAmplification) * adaptiveAmount)
+                        .toInt().coerceIn(0, 255)
+                    val bNew = (bOrig + bDiff.coerceIn(-maxAmplification, maxAmplification) * adaptiveAmount)
+                        .toInt().coerceIn(0, 255)
+                    
+                    originalPixels[i] = Color.argb(255, rNew, gNew, bNew)
                 }
             }
             
             bitmap.setPixels(originalPixels, 0, width, 0, 0, width, height)
-            blurred.recycle() // Bellek temizliği
         } catch (e: Exception) {
             e.printStackTrace()
         } catch (e: OutOfMemoryError) {
             e.printStackTrace()
         }
+    }
+    
+    /**
+     * Hızlı 3x3 Box Blur - noise suppression için
+     */
+    private fun applyFastBoxBlur(bitmap: Bitmap): IntArray {
+        val width = bitmap.width
+        val height = bitmap.height
+        val input = IntArray(width * height)
+        val output = IntArray(width * height)
+        
+        bitmap.getPixels(input, 0, width, 0, 0, width, height)
+        
+        // 3x3 box blur (merkez hariç)
+        for (y in 1 until height - 1) {
+            for (x in 1 until width - 1) {
+                var r = 0
+                var g = 0
+                var b = 0
+                
+                for (dy in -1..1) {
+                    for (dx in -1..1) {
+                        val pixel = input[(y + dy) * width + (x + dx)]
+                        r += Color.red(pixel)
+                        g += Color.green(pixel)
+                        b += Color.blue(pixel)
+                    }
+                }
+                
+                output[y * width + x] = Color.argb(255, r / 9, g / 9, b / 9)
+            }
+        }
+        
+        // Kenarları kopyala
+        for (y in 0 until height) {
+            output[y * width] = input[y * width]
+            output[y * width + width - 1] = input[y * width + width - 1]
+        }
+        for (x in 0 until width) {
+            output[x] = input[x]
+            output[(height - 1) * width + x] = input[(height - 1) * width + x]
+        }
+        
+        return output
     }
 
     /**

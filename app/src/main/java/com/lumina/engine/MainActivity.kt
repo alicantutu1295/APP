@@ -14,6 +14,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -298,21 +299,90 @@ private fun saveBitmapToGallery(context: android.content.Context, bitmap: Bitmap
 
 @Composable
 fun ShimmerLoadingEffect() {
+    // Pixel tarzı dalga animasyonu
     val transition = rememberInfiniteTransition()
-    val alpha by transition.animateFloat(
-        initialValue = 0.2f,
-        targetValue = 0.5f,
+    
+    // Dalga pozisyonu - soldan sağa hareket
+    val translateAnim by transition.animateFloat(
+        initialValue = -1000f,
+        targetValue = 2000f,
         animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
+            animation = tween(1800, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        )
+    )
+    
+    // Parlaklık pulse
+    val pulseAnim by transition.animateFloat(
+        initialValue = 0.3f,
+        targetValue = 0.7f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(900, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse
         )
     )
     
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White.copy(alpha = alpha))
-    )
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // Beyaz overlay pulse
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White.copy(alpha = pulseAnim * 0.15f))
+        )
+        
+        // Dalga/shimmer efekti - diagonal gradient
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = androidx.compose.ui.graphics.Brush.linearGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.White.copy(alpha = 0.0f),
+                            Color.White.copy(alpha = 0.4f),
+                            Color.White.copy(alpha = 0.6f),
+                            Color.White.copy(alpha = 0.4f),
+                            Color.White.copy(alpha = 0.0f),
+                            Color.Transparent
+                        ),
+                        start = androidx.compose.ui.geometry.Offset(translateAnim - 300f, 0f),
+                        end = androidx.compose.ui.geometry.Offset(translateAnim + 300f, 1000f)
+                    )
+                )
+        )
+        
+        // İkinci dalga (ters yönde, daha yavaş)
+        val translateAnim2 by transition.animateFloat(
+            initialValue = 2000f,
+            targetValue = -1000f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(2200, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart
+            )
+        )
+        
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = androidx.compose.ui.graphics.Brush.linearGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Cyan.copy(alpha = 0.0f),
+                            Color.Cyan.copy(alpha = 0.15f),
+                            Color.White.copy(alpha = 0.3f),
+                            Color.Cyan.copy(alpha = 0.15f),
+                            Color.Cyan.copy(alpha = 0.0f),
+                            Color.Transparent
+                        ),
+                        start = androidx.compose.ui.geometry.Offset(translateAnim2 + 200f, 0f),
+                        end = androidx.compose.ui.geometry.Offset(translateAnim2 - 200f, 800f)
+                    )
+                )
+        )
+    }
 }
 
 private fun createPlaceholderBitmap(color: Color): Bitmap {
