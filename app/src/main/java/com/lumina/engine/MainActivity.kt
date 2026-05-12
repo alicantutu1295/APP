@@ -43,6 +43,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import android.graphics.ImageDecoder
+import android.os.Build
+import android.provider.MediaStore
+
 @Composable
 fun LuminaMainScreen() {
     val context = LocalContext.current
@@ -53,9 +59,23 @@ fun LuminaMainScreen() {
     var isProcessing by remember { mutableStateOf(false) }
     var isCompleted by remember { mutableStateOf(false) }
     
-    // Placeholder bitmaps for demonstration
-    var placeholderOriginal by remember { mutableStateOf(createPlaceholderBitmap(Color.DarkGray)) }
-    var placeholderEnhanced by remember { mutableStateOf(createPlaceholderBitmap(Color.Blue)) }
+    var selectedBitmap by remember { mutableStateOf<Bitmap?>(null) }
+    var processedBitmap by remember { mutableStateOf<Bitmap?>(null) }
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let {
+            val bitmap = if (Build.VERSION.SDK_INT < 28) {
+                MediaStore.Images.Media.getBitmap(context.contentResolver, it)
+            } else {
+                val source = ImageDecoder.createSource(context.contentResolver, it)
+                ImageDecoder.decodeBitmap(source)
+            }
+            selectedBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+            isCompleted = false
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -66,23 +86,30 @@ fun LuminaMainScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .padding(16.dp),
+                .padding(16.dp)
+                .clickable { if (!isProcessing) launcher.launch("image/*") },
             contentAlignment = Alignment.Center
         ) {
             Crossfade(targetState = isCompleted) { completed ->
-                if (completed) {
-                    // Step 3: Compare Slider (Post-processing)
-                    CompareSlider(placeholderOriginal, placeholderEnhanced)
+                if (completed && selectedBitmap != null && processedBitmap != null) {
+                    CompareSlider(selectedBitmap!!, processedBitmap!!)
                 } else {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
                             .clip(RoundedCornerShape(28.dp))
-                            .background(Color.Black),
+                            .background(if (selectedBitmap != null) Color.Transparent else Color.Black),
                         contentAlignment = Alignment.Center
                     ) {
+                        if (selectedBitmap != null && !isProcessing) {
+                            Image(
+                                bitmap = selectedBitmap!!.asImageBitmap(),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        }
+                        
                         if (isProcessing) {
-                            // Step 2: Shimmer / Progress Effect
                             ShimmerLoadingEffect()
                             CircularProgressIndicator(
                                 progress = progress,
@@ -90,16 +117,15 @@ fun LuminaMainScreen() {
                                 color = OneUIPrimary,
                                 strokeWidth = 6.dp
                             )
-                        } else {
-                            // Step 1: Initial Preview (BlurHash style)
-                            Text("Select an Image to Begin", color = Color.White)
+                        } else if (selectedBitmap == null) {
+                            Text("Tap to Select an Image", color = Color.White)
                         }
                     }
                 }
             }
         }
 
-        // 2. OneUI 6.1 Control Panel (Bottom Sheet Style)
+        // 2. OneUI 6.1 Control Panel
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -113,7 +139,6 @@ fun LuminaMainScreen() {
                     .navigationBarsPadding(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Drag Handle
                 Box(
                     modifier = Modifier
                         .width(40.dp)
@@ -133,30 +158,37 @@ fun LuminaMainScreen() {
                 Spacer(modifier = Modifier.height(8.dp))
                 
                 Text(
-                    if (isCompleted) "Processing Complete" else "Non-Destructive Hybrid Processing",
+                    when {
+                        isCompleted -> "Processing Complete"
+                        selectedBitmap != null -> "Ready to Process"
+                        else -> "Non-Destructive Hybrid Processing"
+                    },
                     fontSize = 14.sp,
                     color = if (isCompleted) OneUIPrimary else Color.Gray
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                // Squircle Process Button
                 Button(
                     onClick = { 
-                        if (!isProcessing && !isCompleted) {
+                        if (selectedBitmap != null && !isProcessing && !isCompleted) {
                             scope.launch {
                                 isProcessing = true
-                                val result = engine.processImage(placeholderOriginal) { p ->
+                                val result = engine.processImage(selectedBitmap!!) { p ->
                                     progress = p / 100f
                                 }
-                                placeholderEnhanced = result
+                                processedBitmap = result
                                 isProcessing = false
                                 isCompleted = true
                             }
                         } else if (isCompleted) {
                             isCompleted = false
                             isProcessing = false
+                            selectedBitmap = null
+                            processedBitmap = null
                             progress = 0f
+                        } else {
+                            launcher.launch("image/*")
                         }
                     },
                     modifier = Modifier
@@ -168,7 +200,11 @@ fun LuminaMainScreen() {
                     )
                 ) {
                     Text(
-                        if (isCompleted) "Reset" else "Process Image", 
+                        when {
+                            isCompleted -> "Reset"
+                            selectedBitmap != null -> "Process Image"
+                            else -> "Select Image"
+                        }, 
                         fontSize = 18.sp, 
                         color = Color.White
                     )
@@ -179,6 +215,7 @@ fun LuminaMainScreen() {
         }
     }
 }
+
 
 @Composable
 fun ShimmerLoadingEffect() {
