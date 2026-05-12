@@ -28,23 +28,34 @@ class LuminaEngine(private val context: Context) {
     private val textureManager = TextureManager()
 
     suspend fun processImage(inputBitmap: Bitmap, onProgress: (Int) -> Unit): Bitmap = withContext(Dispatchers.Default) {
-        // 1. Semantic Analysis (Pre-processing)
-        onProgress(10)
-        val masks = segmentationManager.analyze(inputBitmap)
+        try {
+            // 1. Semantic Analysis (Pre-processing)
+            onProgress(10)
+            val masks = segmentationManager.analyze(inputBitmap)
 
-        // 2. Neural Super-Resolution (Upscale)
-        onProgress(40)
-        val upscaledBitmap = upscaleManager.upscale(inputBitmap)
+            // 2. Neural Super-Resolution (Upscale)
+            onProgress(40)
+            val upscaledBitmap = upscaleManager.upscale(inputBitmap)
 
-        // 3. Hybrid Color Science (The Core Engine)
-        onProgress(70)
-        var processedBitmap = colorScience.applyHybridLogic(upscaledBitmap, masks)
+            // 3. Hybrid Color Science (The Core Engine)
+            onProgress(70)
+            var processedBitmap = colorScience.applyHybridLogic(upscaledBitmap, masks)
 
-        // 4. Anti-Plastic / Texture Injection
-        onProgress(90)
-        processedBitmap = textureManager.injectNaturalGrain(processedBitmap)
+            // 4. Anti-Plastic / Texture Injection
+            onProgress(90)
+            processedBitmap = textureManager.injectNaturalGrain(processedBitmap)
 
-        onProgress(100)
-        processedBitmap
+            onProgress(100)
+            processedBitmap
+        } catch (e: OutOfMemoryError) {
+            // Bellek yetersizse orijinal resmi döndür
+            e.printStackTrace()
+            onProgress(100)
+            inputBitmap
+        } catch (e: Exception) {
+            e.printStackTrace()
+            onProgress(100)
+            inputBitmap
+        }
     }
 }

@@ -68,15 +68,34 @@ fun LuminaMainScreen() {
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri ->
-        uri?.let {
-            val bitmap = if (Build.VERSION.SDK_INT < 28) {
-                MediaStore.Images.Media.getBitmap(context.contentResolver, it)
-            } else {
-                val source = ImageDecoder.createSource(context.contentResolver, it)
-                ImageDecoder.decodeBitmap(source)
+        uri?.let { imageUri ->
+            try {
+                val bitmap = if (Build.VERSION.SDK_INT < 28) {
+                    // Android 9 (API 28) altı için - basit yükleme ama boyut sınırlı
+                    MediaStore.Images.Media.getBitmap(context.contentResolver, imageUri)
+                } else {
+                    // Android 9+ için - downsample ile yükle
+                    val source = ImageDecoder.createSource(context.contentResolver, imageUri)
+                    ImageDecoder.decodeBitmap(source) { decoder, _, _ ->
+                        // Maksimum 2048px boyut (bellek tasarrufu)
+                        decoder.setTargetSampleSize(2)
+                        decoder.isMutableRequired = true
+                    }
+                }
+                // Kopya oluşturma - direkt kullan (bellek tasarrufu)
+                selectedBitmap = bitmap?.let { 
+                    // Eğer mutable değilse kopyala, mutable ise kullan
+                    if (it.isMutable) it else it.copy(Bitmap.Config.ARGB_8888, true)
+                }
+                isCompleted = false
+                processedBitmap = null // Önceki işlenmiş resmi temizle
+            } catch (e: OutOfMemoryError) {
+                Toast.makeText(context, "Fotoğraf çok büyük! Daha küçük bir fotoğraf seçin.", Toast.LENGTH_LONG).show()
+                e.printStackTrace()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Fotoğraf yüklenirken hata: ${e.message}", Toast.LENGTH_LONG).show()
+                e.printStackTrace()
             }
-            selectedBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-            isCompleted = false
         }
     }
 
@@ -177,8 +196,12 @@ fun LuminaMainScreen() {
                         Button(
                             onClick = {
                                 processedBitmap?.let {
-                                    saveBitmapToGallery(context, it)
-                                    Toast.makeText(context, "Saved to Gallery!", Toast.LENGTH_SHORT).show()
+                                    val success = saveBitmapToGallery(context, it)
+                                    if (success) {
+                                        Toast.makeText(context, "Galeriye kaydedildi!", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(context, "Kaydetme başarısız!", Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                             },
                             modifier = Modifier.weight(1f).height(56.dp).padding(end = 8.dp),
@@ -193,13 +216,22 @@ fun LuminaMainScreen() {
                         onClick = { 
                             if (selectedBitmap != null && !isProcessing && !isCompleted) {
                                 scope.launch {
-                                    isProcessing = true
-                                    val result = engine.processImage(selectedBitmap!!) { p ->
-                                        progress = p / 100f
+                                    try {
+                                        isProcessing = true
+                                        val result = engine.processImage(selectedBitmap!!) { p ->
+                                            progress = p / 100f
+                                        }
+                                        processedBitmap = result
+                                        isCompleted = true
+                                    } catch (e: OutOfMemoryError) {
+                                        Toast.makeText(context, "Bellek yetersiz! Daha küçük fotoğraf seçin.", Toast.LENGTH_LONG).show()
+                                        e.printStackTrace()
+                                    } catch (e: Exception) {
+                                        Toast.makeText(context, "İşleme hatası: ${e.message}", Toast.LENGTH_LONG).show()
+                                        e.printStackTrace()
+                                    } finally {
+                                        isProcessing = false
                                     }
-                                    processedBitmap = result
-                                    isProcessing = false
-                                    isCompleted = true
                                 }
                             } else if (isCompleted) {
                                 isCompleted = false
@@ -235,20 +267,26 @@ fun LuminaMainScreen() {
     }
 }
 
-private fun saveBitmapToGallery(context: android.content.Context, bitmap: Bitmap) {
-    val filename = "Lumina_${System.currentTimeMillis()}.jpg"
-    var fos: java.io.OutputStream? = null
-    context.contentResolver?.also { resolver ->
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
-            put(MediaStore.MediaColumns.RELATIVE_PATH, android.os.Environment.DIRECTORY_PICTURES + "/Lumina")
+private fun saveBitmapToGallery(context: android.content.Context, bitmap: Bitmap): Boolean {
+    return try {
+        val filename = "Lumina_${System.currentTimeMillis()}.jpg"
+        var fos: java.io.OutputStream? = null
+        context.contentResolver?.also { resolver ->
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+                put(MediaStore.MediaColumns.RELATIVE_PATH, android.os.Environment.DIRECTORY_PICTURES + "/Lumina")
+            }
+            val imageUri: android.net.Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+            fos = imageUri?.let { resolver.openOutputStream(it) }
         }
-        val imageUri: android.net.Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-        fos = imageUri?.let { resolver.openOutputStream(it) }
-    }
-    fos?.use {
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+        fos?.use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 95, it)
+        }
+        true
+    } catch (e: Exception) {
+        e.printStackTrace()
+        false
     }
 }
 
