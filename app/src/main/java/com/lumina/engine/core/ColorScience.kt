@@ -25,17 +25,17 @@ class ColorScience {
     private external fun applyAdaptiveSharpen(bitmap: Bitmap, amount: Float)
 
     fun applyHybridLogic(bitmap: Bitmap, masks: Map<String, Bitmap?>): Bitmap {
-        // Her zaman mutable kopya oluştur - orijinali değiştirme
-        var result = bitmap.copy(Bitmap.Config.ARGB_8888, true)
+        // Tek mutable bitmap üzerinde çalış - hafıza verimliliği
+        val result = bitmap.copy(Bitmap.Config.ARGB_8888, true)
         
         // 1. Apple Base: Auto White Balance (AWB) Gray World + Warm Offset
-        result = applyAppleTrueTone(result)
+        applyAppleTrueToneInPlace(result)
 
         // 2. Samsung Tone: Shadow Recovery (Simple Gamma)
-        result = applySamsungHDR(result, masks["background"])
+        applySamsungHDRInPlace(result)
 
         // 3. Leica Contrast: Midtone S-Curve & Selective Saturation
-        result = applyLeicaContrast(result)
+        applyLeicaContrastInPlace(result)
 
         // 4. Local Laplacian (Native Depth) - Sadece OpenCV varsa çalışır
         try {
@@ -45,39 +45,42 @@ class ColorScience {
         }
 
         // 5. The Final Pop: Adaptive Sharpening & Vignette
-        result = applyFinalPop(result)
+        applyFinalPopInPlace(result)
 
         return result
     }
 
     /**
-     * Apple TrueTone: Gray World White Balance + Warm Tint
+     * Apple TrueTone: Gray World White Balance + Warm Tint (In-place)
      */
-    private fun applyAppleTrueTone(bitmap: Bitmap): Bitmap {
+    private fun applyAppleTrueToneInPlace(bitmap: Bitmap) {
         val width = bitmap.width
         val height = bitmap.height
-        val pixels = IntArray(width * height)
+        val pixelCount = width * height
+        val pixels = IntArray(pixelCount)
         bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
         
-        // 1. Gray World: Ortalama rengi hesapla
+        // 1. Gray World: Ortalama rengi hesapla (örnekleme ile hızlandır)
         var avgR = 0.0
         var avgG = 0.0
         var avgB = 0.0
+        val sampleStep = maxOf(1, pixelCount / 5000) // Her 5000 pikselde bir örnek al
+        var sampleCount = 0
         
-        for (pixel in pixels) {
-            avgR += Color.red(pixel)
-            avgG += Color.green(pixel)
-            avgB += Color.blue(pixel)
+        for (i in pixels.indices step sampleStep) {
+            avgR += Color.red(pixels[i])
+            avgG += Color.green(pixels[i])
+            avgB += Color.blue(pixels[i])
+            sampleCount++
         }
         
-        val pixelCount = (width * height).toDouble()
-        avgR /= pixelCount
-        avgG /= pixelCount
-        avgB /= pixelCount
+        avgR /= sampleCount
+        avgG /= sampleCount
+        avgB /= sampleCount
         
         // Gray World: R ve B kanallarını G'ye eşitle
-        val rGain = avgG / avgR
-        val bGain = avgG / avgB
+        val rGain = if (avgR > 0) avgG / avgR else 1.0
+        val bGain = if (avgB > 0) avgG / avgB else 1.0
         
         // 2. Warm Offset (5500K -> daha sıcak/sarımsı)
         val warmFactor = 1.08f // %8 warm boost
@@ -87,30 +90,28 @@ class ColorScience {
             val g = Color.green(pixels[i])
             val b = Color.blue(pixels[i])
             
-            // White Balance
+            // White Balance + Warm tint
             val newR = (r * rGain * warmFactor).coerceIn(0.0, 255.0).toInt()
-            val newG = g.coerceIn(0, 255) // Yeşil değiştirme
-            val newB = (b * bGain * 0.95f).coerceIn(0.0, 255.0).toInt() // Hafif soğuk azaltımı
+            val newG = g
+            val newB = (b * bGain * 0.95f).coerceIn(0.0, 255.0).toInt()
             
             pixels[i] = Color.argb(255, newR, newG, newB)
         }
         
-        val result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        result.setPixels(pixels, 0, width, 0, 0, width, height)
-        return result
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
     }
 
     /**
-     * Samsung HDR: Gamma correction for shadow lifting
+     * Samsung HDR: Gamma correction for shadow lifting (In-place)
      */
-    private fun applySamsungHDR(bitmap: Bitmap, backgroundMask: Bitmap?): Bitmap {
+    private fun applySamsungHDRInPlace(bitmap: Bitmap) {
         val width = bitmap.width
         val height = bitmap.height
         val pixels = IntArray(width * height)
         bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
         
-        // Shadow lifting gamma (1.2 gamma - daha aydınlık gölgeler)
-        val gamma = 1.2f
+        // Shadow lifting gamma (1.15 gamma - daha aydınlık gölgeler)
+        val gamma = 1.15f
         val gammaInv = 1.0f / gamma
         
         for (i in pixels.indices) {
@@ -118,34 +119,35 @@ class ColorScience {
             val g = Color.green(pixels[i]) / 255.0f
             val b = Color.blue(pixels[i]) / 255.0f
             
-            // Gamma correction (lift shadows)
-            val newR = (r.pow(gammaInv) * 255).toInt().coerceIn(0, 255)
-            val newG = (g.pow(gammaInv) * 255).toInt().coerceIn(0, 255)
-            val newB = (b.pow(gammaInv) * 255).toInt().coerceIn(0, 255)
+            // Gamma correction (lift shadows) - optimize edilmiş
+            val newR = (fastPow(r, gammaInv) * 255).toInt().coerceIn(0, 255)
+            val newG = (fastPow(g, gammaInv) * 255).toInt().coerceIn(0, 255)
+            val newB = (fastPow(b, gammaInv) * 255).toInt().coerceIn(0, 255)
             
             pixels[i] = Color.argb(255, newR, newG, newB)
         }
         
-        val result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        result.setPixels(pixels, 0, width, 0, 0, width, height)
-        return result
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+    }
+    
+    // Hızlı üs alma - Math.pow yerine
+    private fun fastPow(base: Float, exp: Float): Float {
+        return kotlin.math.pow(base, exp)
     }
 
     /**
-     * Leica Contrast: Sigmoid S-curve + Saturation boost
+     * Leica Contrast: Sigmoid S-curve + Saturation boost (In-place)
      */
-    private fun applyLeicaContrast(bitmap: Bitmap): Bitmap {
+    private fun applyLeicaContrastInPlace(bitmap: Bitmap) {
         val width = bitmap.width
         val height = bitmap.height
         val pixels = IntArray(width * height)
         bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
         
-        // Sigmoid parametreleri
-        val k = 8.0 // Contrast strength
-        val midpoint = 0.5 // Midtones
-        
-        // Saturation boost
-        val satBoost = 1.15f
+        // Hafifletilmiş parametreler (hız için)
+        val k = 6.0 // Contrast strength (düşürüldü)
+        val midpoint = 0.5
+        val satBoost = 1.12f // Hafif saturation
         
         for (i in pixels.indices) {
             val r = Color.red(pixels[i]) / 255.0
@@ -171,33 +173,29 @@ class ColorScience {
             )
         }
         
-        val result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        result.setPixels(pixels, 0, width, 0, 0, width, height)
-        return result
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
     }
 
     private fun sigmoid(x: Double, k: Double, midpoint: Double): Double {
         return 1.0 / (1.0 + kotlin.math.exp(-k * (x - midpoint)))
     }
 
-    private fun applyFinalPop(bitmap: Bitmap): Bitmap {
-        val result = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-        
+    private fun applyFinalPopInPlace(bitmap: Bitmap) {
         // 1. Adaptive Sharpening (Native) - Sadece OpenCV varsa
         try {
-            applyAdaptiveSharpen(result, 0.3f)
+            applyAdaptiveSharpen(bitmap, 0.25f)
         } catch (e: Exception) {
             // OpenCV yoksa atla
         }
         
-        // 2. Vignette ekle
-        return addVignette(result)
+        // 2. Vignette ekle (in-place)
+        addVignetteInPlace(bitmap)
     }
 
     /**
-     * Soft vignette (köşeleri karanlıklaştır, merkezi vurgula)
+     * Soft vignette (köşeleri karanlıklaştır, merkezi vurgula) - In-place
      */
-    private fun addVignette(bitmap: Bitmap): Bitmap {
+    private fun addVignetteInPlace(bitmap: Bitmap) {
         val width = bitmap.width
         val height = bitmap.height
         val pixels = IntArray(width * height)
@@ -206,18 +204,21 @@ class ColorScience {
         val centerX = width / 2.0
         val centerY = height / 2.0
         val maxDist = sqrt(centerX * centerX + centerY * centerY)
+        val maxDistInv = 1.0 / maxDist
         
         for (y in 0 until height) {
+            val dy = y - centerY
+            val dy2 = dy * dy
+            
             for (x in 0 until width) {
                 val idx = y * width + x
                 
-                // Merkeze olan uzaklık
+                // Merkeze olan uzaklık (optimize edilmiş)
                 val dx = x - centerX
-                val dy = y - centerY
-                val dist = sqrt(dx * dx + dy * dy)
+                val dist = sqrt(dx * dx + dy2)
                 
-                // Vignette factor (1.0 = merkez, ~0.7 = köşeler)
-                val vignette = 1.0 - (0.25 * (dist / maxDist).pow(1.5))
+                // Vignette factor (hafifletilmiş)
+                val vignette = 1.0 - (0.15 * dist * maxDistInv) // Daha hafif vignette
                 
                 val r = (Color.red(pixels[idx]) * vignette).toInt().coerceIn(0, 255)
                 val g = (Color.green(pixels[idx]) * vignette).toInt().coerceIn(0, 255)
@@ -227,8 +228,6 @@ class ColorScience {
             }
         }
         
-        val result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        result.setPixels(pixels, 0, width, 0, 0, width, height)
-        return result
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
     }
 }

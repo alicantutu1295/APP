@@ -218,6 +218,12 @@ fun LuminaMainScreen() {
                                 scope.launch {
                                     try {
                                         isProcessing = true
+                                        
+                                        // Büyük resim uyarısı
+                                        if (engine.wasImageDownsampled(selectedBitmap!!)) {
+                                            Toast.makeText(context, "Büyük fotoğraf optimize ediliyor...", Toast.LENGTH_SHORT).show()
+                                        }
+                                        
                                         val result = engine.processImage(selectedBitmap!!) { p ->
                                             progress = p / 100f
                                         }
