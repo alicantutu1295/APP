@@ -9,7 +9,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.SwapHoriz
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
@@ -93,7 +93,7 @@ fun CompareSlider(original: Bitmap, enhanced: Bitmap) {
                 shadowElevation = 8.dp
             ) {
                 Icon(
-                    imageVector = Icons.Default.SwapHoriz,
+                    imageVector = Icons.Default.Refresh,
                     contentDescription = "Compare",
                     tint = Color.Black,
                     modifier = Modifier.padding(8.dp)
