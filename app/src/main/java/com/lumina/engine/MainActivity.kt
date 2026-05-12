@@ -1,5 +1,6 @@
 package com.lumina.engine
 
+import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.ImageDecoder
@@ -7,6 +8,7 @@ import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
@@ -49,10 +51,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-import android.content.ContentValues
-import android.media.MediaScannerConnection
-import android.widget.Toast
 
 @Composable
 fun LuminaMainScreen() {
@@ -240,22 +238,19 @@ fun LuminaMainScreen() {
 private fun saveBitmapToGallery(context: android.content.Context, bitmap: Bitmap) {
     val filename = "Lumina_${System.currentTimeMillis()}.jpg"
     var fos: java.io.OutputStream? = null
-    if (Build.VERSION.SDK_INT >= Build.VERSION.SDK_INT) { // Simplified for brevity
-        context.contentResolver?.also { resolver ->
-            val contentValues = ContentValues().apply {
-                put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
-                put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
-                put(MediaStore.MediaColumns.RELATIVE_PATH, android.os.Environment.DIRECTORY_PICTURES + "/Lumina")
-            }
-            val imageUri: android.net.Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-            fos = imageUri?.let { resolver.openOutputStream(it) }
+    context.contentResolver?.also { resolver ->
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
+            put(MediaStore.MediaColumns.RELATIVE_PATH, android.os.Environment.DIRECTORY_PICTURES + "/Lumina")
         }
+        val imageUri: android.net.Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+        fos = imageUri?.let { resolver.openOutputStream(it) }
     }
     fos?.use {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
     }
 }
-
 
 @Composable
 fun ShimmerLoadingEffect() {

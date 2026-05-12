@@ -2,17 +2,16 @@ package com.lumina.engine.core
 
 import android.content.Context
 import android.graphics.Bitmap
-
-/**
- * Handles Super-Resolution and Texture Injection.
- * Model: Real-ESRGAN-AnimeVideo-v3
- */
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.gpu.GpuDelegate
 import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 
+/**
+ * Handles Super-Resolution and Texture Injection.
+ * Model: Real-ESRGAN-AnimeVideo-v3
+ */
 class UpscaleManager(context: Context) {
 
     private var interpreter: Interpreter? = null
