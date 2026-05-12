@@ -1,14 +1,18 @@
 #include <jni.h>
 #include <string>
-#include <opencv2/opencv.hpp>
 #include <android/bitmap.h>
 #include <vector>
 #include <android/log.h>
 
+#ifdef OPENCV_AVAILABLE
+#include <opencv2/opencv.hpp>
+using namespace cv;
+#endif
+
 #define LOG_TAG "LuminaNative"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 
-using namespace cv;
+#ifdef OPENCV_AVAILABLE
 
 /**
  * Utility to convert Android Bitmap to OpenCV Mat
@@ -45,12 +49,14 @@ void matToBitmap(JNIEnv* env, Mat& mat, jobject bitmap) {
     AndroidBitmap_unlockPixels(env, bitmap);
 }
 
+#endif // OPENCV_AVAILABLE
+
 extern "C" {
 
 JNIEXPORT void JNICALL
 Java_com_lumina_engine_core_UpscaleManager_applyLuminanceReinjection(
     JNIEnv* env, jobject thiz, jobject ai_bitmap, jobject original_low_res, jfloat strength) {
-    
+    #ifdef OPENCV_AVAILABLE
     Mat aiMat, lowResMat;
     bitmapToMat(env, ai_bitmap, aiMat);
     bitmapToMat(env, original_low_res, lowResMat);
@@ -76,11 +82,15 @@ Java_com_lumina_engine_core_UpscaleManager_applyLuminanceReinjection(
     cvtColor(aiYUV, aiRGB, COLOR_YUV2RGB);
     
     matToBitmap(env, aiRGB, ai_bitmap);
+    #else
+    LOGI("OpenCV not available - applyLuminanceReinjection skipped");
+    #endif
 }
 
 JNIEXPORT void JNICALL
 Java_com_lumina_engine_core_ColorScience_applyLocalLaplacian(
     JNIEnv* env, jobject thiz, jobject bitmap, jfloat sigma, jfloat fact) {
+    #ifdef OPENCV_AVAILABLE
     Mat mat;
     bitmapToMat(env, bitmap, mat);
     
@@ -93,11 +103,15 @@ Java_com_lumina_engine_core_ColorScience_applyLocalLaplacian(
     if (mat.channels() == 4) cvtColor(gray, mat, COLOR_GRAY2RGBA); else cvtColor(gray, mat, COLOR_GRAY2RGB);
     
     matToBitmap(env, mat, bitmap);
+    #else
+    LOGI("OpenCV not available - applyLocalLaplacian skipped");
+    #endif
 }
 
 JNIEXPORT void JNICALL
 Java_com_lumina_engine_core_TextureManager_applyAdaptiveGrain(
     JNIEnv* env, jobject thiz, jobject bitmap, jfloat strength) {
+    #ifdef OPENCV_AVAILABLE
     Mat frame;
     bitmapToMat(env, bitmap, frame);
     
@@ -129,11 +143,15 @@ Java_com_lumina_engine_core_TextureManager_applyAdaptiveGrain(
     add(frameRGB, finalNoise, frameRGB);
 
     matToBitmap(env, frameRGB, bitmap);
+    #else
+    LOGI("OpenCV not available - applyAdaptiveGrain skipped");
+    #endif
 }
 
 JNIEXPORT void JNICALL
 Java_com_lumina_engine_core_ColorScience_applyAdaptiveSharpen(
     JNIEnv* env, jobject thiz, jobject bitmap, jfloat amount) {
+    #ifdef OPENCV_AVAILABLE
     Mat frame;
     bitmapToMat(env, bitmap, frame);
 
@@ -145,6 +163,9 @@ Java_com_lumina_engine_core_ColorScience_applyAdaptiveSharpen(
     addWeighted(frameRGB, 1.0 + amount, blurred, -amount, 0, frameRGB);
 
     matToBitmap(env, frameRGB, bitmap);
+    #else
+    LOGI("OpenCV not available - applyAdaptiveSharpen skipped");
+    #endif
 }
 
 } // extern "C"

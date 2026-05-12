@@ -22,17 +22,27 @@ class UpscaleManager(context: Context) {
 
     private fun setupInterpreter(context: Context) {
         val options = Interpreter.Options().apply {
-            // 1. Add GPU Delegate for acceleration
-            val gpuDelegate = GpuDelegate()
-            addDelegate(gpuDelegate)
+            // 1. Try to add GPU Delegate for acceleration (may fail on some devices)
+            try {
+                val gpuDelegate = GpuDelegate()
+                addDelegate(gpuDelegate)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // GPU not available, fallback to CPU
+            }
             
             // 2. Multi-threaded processing if falls back to CPU
             setNumThreads(4)
         }
 
         // 3. Load FP16 Model (Gold standard for Pixel-like quality)
-        val modelBuffer = loadModelFile(context, "real_esrgan_fp16.tflite")
-        interpreter = Interpreter(modelBuffer, options)
+        try {
+            val modelBuffer = loadModelFile(context, "real_esrgan_fp16.tflite")
+            interpreter = Interpreter(modelBuffer, options)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            interpreter = null
+        }
     }
 
     private fun loadModelFile(context: Context, modelName: String): MappedByteBuffer {
