@@ -135,7 +135,7 @@ JNIEXPORT void JNICALL
 Java_com_lumina_engine_core_ColorScience_applyAdaptiveSharpen(
     JNIEnv* env, jobject thiz, jobject bitmap, jfloat amount) {
     Mat frame;
-    bitmapToMat(env, frame, frame);
+    bitmapToMat(env, bitmap, frame);
 
     Mat frameRGB;
     if (frame.channels() == 4) cvtColor(frame, frameRGB, COLOR_RGBA2RGB); else frameRGB = frame;
