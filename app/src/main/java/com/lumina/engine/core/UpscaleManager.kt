@@ -14,8 +14,22 @@ import kotlin.math.min
 class UpscaleManager(context: Context) {
     // TFLite model devre dışı - siyah/beyaz çıktı veriyor
 
+    companion object {
+        private const val MAX_INPUT_SIZE = 2000 // Maksimum 2000px (bellek koruması)
+    }
+
     fun upscale(bitmap: Bitmap): Bitmap {
-        return highQualityUpscale(bitmap)
+        // Çok büyük resimleri önce küçült
+        val safeBitmap = if (bitmap.width > MAX_INPUT_SIZE || bitmap.height > MAX_INPUT_SIZE) {
+            val scale = MAX_INPUT_SIZE.toFloat() / maxOf(bitmap.width, bitmap.height)
+            val newWidth = (bitmap.width * scale).toInt()
+            val newHeight = (bitmap.height * scale).toInt()
+            Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
+        } else {
+            bitmap
+        }
+        
+        return highQualityUpscale(safeBitmap)
     }
     
     /**
@@ -27,18 +41,15 @@ class UpscaleManager(context: Context) {
             val targetWidth = bitmap.width * 2
             val targetHeight = bitmap.height * 2
             
-            // 1. Yüksek kaliteli upscale (Bicubic simulation via two-step linear)
-            val step1 = Bitmap.createScaledBitmap(bitmap, bitmap.width * 3 / 2, bitmap.height * 3 / 2, true)
-            val step2 = Bitmap.createScaledBitmap(step1, targetWidth, targetHeight, true)
-            step1.recycle()
+            // Direkt 2x upscale (filter=true = bicubic quality)
+            val scaled = Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, true)
             
-            // 2. Agresif ama temiz netleme
-            val sharpened = applyAdvancedSharpen(step2)
-            
-            // 3. Kenar detaylarını koru
+            // Agresif netleme + renk koruma
+            val sharpened = applyAdvancedSharpen(scaled)
             val finalBitmap = preserveOriginalColors(bitmap, sharpened)
             
-            step2.recycle()
+            // Bellek temizliği
+            System.gc()
             finalBitmap
             
         } catch (e: OutOfMemoryError) {
