@@ -9,6 +9,8 @@ import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Handles Super-Resolution and Texture Injection.
@@ -64,28 +66,171 @@ class UpscaleManager(context: Context) {
     )
 
     fun upscale(bitmap: Bitmap): Bitmap {
+        // TFLite model sorunlu - direkt güvenilir CPU upscale kullan
+        return highQualityUpscale(bitmap)
+    }
+    
+    /**
+     * YÜKSEK KALİTELİ CPU Upscale - Renkleri mükemmel korur, agresif netleştirir
+     * TFLite model yerine kullanılır (model siyah/beyaz çıktı veriyor)
+     */
+    private fun highQualityUpscale(bitmap: Bitmap): Bitmap {
         return try {
-            // TFLite Real-ESRGAN inference
-            val highResBitmap = runInference(bitmap) 
+            val targetWidth = bitmap.width * 2
+            val targetHeight = bitmap.height * 2
             
-            // Luminance Re-injection (Sadece OpenCV varsa çalışır)
-            try {
-                applyLuminanceReinjection(highResBitmap, bitmap, 0.12f)
-            } catch (e: Exception) {
-                // OpenCV yoksa atla
-            }
+            // 1. Yüksek kaliteli upscale (Bicubic simulation via two-step linear)
+            val step1 = Bitmap.createScaledBitmap(bitmap, bitmap.width * 3 / 2, bitmap.height * 3 / 2, true)
+            val step2 = Bitmap.createScaledBitmap(step1, targetWidth, targetHeight, true)
+            step1.recycle()
             
-            highResBitmap
+            // 2. Agresif ama temiz netleme
+            val sharpened = applyAdvancedSharpen(step2)
+            
+            // 3. Kenar detaylarını koru
+            val finalBitmap = preserveOriginalColors(bitmap, sharpened)
+            
+            step2.recycle()
+            finalBitmap
+            
         } catch (e: OutOfMemoryError) {
             e.printStackTrace()
-            // Bellek hatası durumunda basit upscale
             simpleUpscale(bitmap)
         } catch (e: Exception) {
             e.printStackTrace()
             simpleUpscale(bitmap)
         }
     }
+    
+    /**
+     * Orijinal renkleri koruyup sadece detayları artır
+     */
+    private fun preserveOriginalColors(original: Bitmap, upscaled: Bitmap): Bitmap {
+        val width = upscaled.width
+        val height = upscaled.height
+        
+        // Orijinali upscale boyutuna getir (renk kaynağı)
+        val originalScaled = Bitmap.createScaledBitmap(original, width, height, true)
+        
+        val origPixels = IntArray(width * height)
+        val upPixels = IntArray(width * height)
+        
+        originalScaled.getPixels(origPixels, 0, width, 0, 0, width, height)
+        upscaled.getPixels(upPixels, 0, width, 0, 0, width, height)
+        originalScaled.recycle()
+        
+        // Orijinal renkleri kullan, upscaled'den sadece luminance/edge bilgisi al
+        for (i in origPixels.indices) {
+            val orig = origPixels[i]
+            val up = upPixels[i]
+            
+            val rOrig = Color.red(orig)
+            val gOrig = Color.green(orig)
+            val bOrig = Color.blue(orig)
+            
+            val rUp = Color.red(up)
+            val gUp = Color.green(up)
+            val bUp = Color.blue(up)
+            
+            // Luminance farkını hesapla (edge bilgisi)
+            val lumOrig = (rOrig + gOrig + bOrig) / 3
+            val lumUp = (rUp + gUp + bUp) / 3
+            val lumDiff = lumUp - lumOrig
+            
+            // Orijinal renklere luminance detayını ekle
+            val rNew = (rOrig + lumDiff).coerceIn(0, 255)
+            val gNew = (gOrig + lumDiff).coerceIn(0, 255)
+            val bNew = (bOrig + lumDiff).coerceIn(0, 255)
+            
+            upPixels[i] = Color.argb(255, rNew, gNew, bNew)
+        }
+        
+        upscaled.setPixels(upPixels, 0, width, 0, 0, width, height)
+        return upscaled
+    }
+    
+    /**
+     * Gelişmiş netleme - Çok ölçekli unsharp mask
+     */
+    private fun applyAdvancedSharpen(bitmap: Bitmap): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+        
+        val pixels = IntArray(width * height)
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+        
+        // Hafif blur uygula (noise azaltma)
+        val blurred = applyBoxBlur(pixels, width, height, 1)
+        
+        // Multi-scale unsharp mask
+        for (i in pixels.indices) {
+            val orig = pixels[i]
+            val blur = blurred[i]
+            
+            val rOrig = Color.red(orig)
+            val gOrig = Color.green(orig)
+            val bOrig = Color.blue(orig)
+            
+            val rBlur = Color.red(blur)
+            val gBlur = Color.green(blur)
+            val bBlur = Color.blue(blur)
+            
+            // Fine detail enhancement
+            val rDiff = rOrig - rBlur
+            val gDiff = gOrig - gBlur
+            val bDiff = bOrig - bBlur
+            
+            // Adaptive sharpening: daha agresif
+            val edgeStrength = maxOf(abs(rDiff), abs(gDiff), abs(bDiff))
+            val amount = if (edgeStrength < 20) 2.5f else 1.5f
+            
+            // Clamp to prevent halo
+            val rNew = (rOrig + rDiff.coerceIn(-40, 40) * amount).toInt().coerceIn(0, 255)
+            val gNew = (gOrig + gDiff.coerceIn(-40, 40) * amount).toInt().coerceIn(0, 255)
+            val bNew = (bOrig + bDiff.coerceIn(-40, 40) * amount).toInt().coerceIn(0, 255)
+            
+            pixels[i] = Color.argb(255, rNew, gNew, bNew)
+        }
+        
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+        return bitmap
+    }
+    
+    /**
+     * Hızlı box blur - netleme için detay azaltma
+     */
+    private fun applyBoxBlur(pixels: IntArray, width: Int, height: Int, radius: Int): IntArray {
+        val output = pixels.copyOf()
+        
+        for (y in radius until height - radius) {
+            for (x in radius until width - radius) {
+                var r = 0
+                var g = 0
+                var b = 0
+                var count = 0
+                
+                for (dy in -radius..radius) {
+                    for (dx in -radius..radius) {
+                        val idx = (y + dy) * width + (x + dx)
+                        val pixel = pixels[idx]
+                        r += Color.red(pixel)
+                        g += Color.green(pixel)
+                        b += Color.blue(pixel)
+                        count++
+                    }
+                }
+                
+                output[y * width + x] = Color.argb(255, r / count, g / count, b / count)
+            }
+        }
+        
+        return output
+    }
 
+    /**
+     * DEPRECATED: TFLite model sorunlu, kullanılmıyor
+     */
+    @Deprecated("Model siyah/beyaz çıktı veriyor, highQualityUpscale kullan")
     private fun runInference(bitmap: Bitmap): Bitmap {
         val interpreter = interpreter ?: return simpleUpscale(bitmap)
         
@@ -111,7 +256,7 @@ class UpscaleManager(context: Context) {
             val intValues = IntArray(inputSize * inputSize)
             scaledInput.getPixels(intValues, 0, inputSize, 0, 0, inputSize, inputSize)
             
-            // Normalizasyon: 0-255 -> 0-1
+            // Normalizasyon: 0-255 -> 0-1 (RGB order)
             for (pixel in intValues) {
                 val r = ((pixel shr 16) and 0xFF) / 255.0f
                 val g = ((pixel shr 8) and 0xFF) / 255.0f
@@ -122,13 +267,24 @@ class UpscaleManager(context: Context) {
             }
             inputBuffer.rewind()
             
+            // Output buffer - 3 kanal için (model 1 veya 3 kanal verebilir)
             val outputBuffer = java.nio.ByteBuffer.allocateDirect(1 * outputSize * outputSize * 3 * 4)
             outputBuffer.order(java.nio.ByteOrder.nativeOrder())
             
             interpreter.run(inputBuffer, outputBuffer)
             
+            // Log buffer capacity for debugging
+            android.util.Log.d("UpscaleManager", "Output buffer capacity: ${outputBuffer.capacity()}, position: ${outputBuffer.position()}")
+            
             // Output 256x256 (64*4), hedef 128x128 (64*2) - yani x2 küçült
             val upscaled = convertByteBufferToBitmap(outputBuffer, outputSize, outputSize)
+            
+            // Model çıktısı valid mi kontrol et (hepsi aynı renk veya siyah/beyaz ise basit upscale kullan)
+            if (!isValidColorOutput(upscaled)) {
+                android.util.Log.w("UpscaleManager", "Model output invalid (grayscale/bw), using simple upscale")
+                upscaled.recycle()
+                return simpleUpscale(bitmap)
+            }
             
             // Hedef boyut: input * 2
             val targetWidth = bitmap.width * finalScale
@@ -288,21 +444,70 @@ class UpscaleManager(context: Context) {
         }
     }
 
+    /**
+     * Model çıktısının valid renkli çıktı olduğunu kontrol et
+     * (Siyah/beyaz veya tek renk ise false döndür)
+     */
+    private fun isValidColorOutput(bitmap: Bitmap): Boolean {
+        val width = bitmap.width
+        val height = bitmap.height
+        val sampleSize = minOf(width * height, 1000) // Sample for speed
+        val pixels = IntArray(sampleSize)
+        
+        bitmap.getPixels(pixels, 0, width, 0, 0, minOf(width, 100), minOf(height, 10))
+        
+        var hasRed = false
+        var hasGreen = false
+        var hasBlue = false
+        var variance = 0
+        var prevPixel = pixels[0]
+        
+        for (pixel in pixels) {
+            val r = Color.red(pixel)
+            val g = Color.green(pixel)
+            val b = Color.blue(pixel)
+            
+            if (r > 30) hasRed = true
+            if (g > 30) hasGreen = true
+            if (b > 30) hasBlue = true
+            
+            if (abs(r - g) > 5 || abs(g - b) > 5 || abs(r - b) > 5) {
+                variance++
+            }
+            
+            prevPixel = pixel
+        }
+        
+        // Eğer sadece grayscale (R=G=B) veya tüm pikseller aynıysa invalid
+        return hasRed && hasGreen && hasBlue && variance > sampleSize * 0.1
+    }
+
     private fun convertByteBufferToBitmap(buffer: java.nio.ByteBuffer, width: Int, height: Int): Bitmap {
-        buffer.rewind()
+        buffer.rewind() // Critical: reset position after interpreter.run()
         
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val pixels = IntArray(width * height)
         
-        for (i in 0 until width * height) {
-            // Real-ESRGAN modelleri BGR çıktı verebilir (OpenCV geleneği)
-            // Önce BGR oku, sonra RGB'ye çevir
-            val b = readNormalizedFloat(buffer)
-            val g = readNormalizedFloat(buffer)
-            val r = readNormalizedFloat(buffer)
-            
-            // ARGB format (Android format)
-            pixels[i] = (0xFF shl 24) or (r shl 16) or (g shl 8) or b
+        // Buffer capacity'ye bakarak formatı tespit et
+        val capacity = buffer.capacity()
+        val expectedRGB = width * height * 3 * 4 // 3 kanal, 4 byte/float
+        val expectedSingle = width * height * 1 * 4 // 1 kanal
+        
+        if (capacity == expectedSingle) {
+            // Model grayscale/tek kanal çıktı veriyor (Y kanalı)
+            for (i in 0 until width * height) {
+                val y = readNormalizedFloat(buffer)
+                // Grayscale -> RGB (R=G=B=Y)
+                pixels[i] = (0xFF shl 24) or (y shl 16) or (y shl 8) or y
+            }
+        } else {
+            // RGB çıktı - BGR sırası varsayalım (Real-ESRGAN standart)
+            for (i in 0 until width * height) {
+                val b = readNormalizedFloat(buffer)
+                val g = readNormalizedFloat(buffer)
+                val r = readNormalizedFloat(buffer)
+                pixels[i] = (0xFF shl 24) or (r shl 16) or (g shl 8) or b
+            }
         }
         
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
@@ -311,11 +516,9 @@ class UpscaleManager(context: Context) {
     
     /**
      * Buffer'dan float oku ve 0-255 aralığına getir
-     * Model çıktısı 0-1 veya 0-255 aralığında olabilir
      */
     private fun readNormalizedFloat(buffer: java.nio.ByteBuffer): Int {
         val value = buffer.float
-        // Eğer değer 1'den büyükse, zaten 0-255 aralığındadır
         return if (value > 1.0f) {
             value.coerceIn(0.0f, 255.0f).toInt()
         } else {
