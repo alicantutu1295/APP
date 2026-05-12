@@ -13,7 +13,12 @@ class LuminaEngine(private val context: Context) {
 
     companion object {
         init {
-            System.loadLibrary("luminaengine")
+            try {
+                System.loadLibrary("luminaengine")
+            } catch (e: UnsatisfiedLinkError) {
+                // Native kütüphane yüklenemezse (OpenCV yoksa), Java-only modda çalış
+                e.printStackTrace()
+            }
         }
     }
 

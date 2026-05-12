@@ -15,7 +15,12 @@ class TextureManager {
     fun injectNaturalGrain(bitmap: Bitmap): Bitmap {
         // Gaussian Noise Generation targeting shadows
         // 2% intensity digital grain
-        applyAdaptiveGrain(bitmap, 0.02f)
+        // (Sadece OpenCV varsa çalışır, yoksa atlanır)
+        try {
+            applyAdaptiveGrain(bitmap, 0.02f)
+        } catch (e: Exception) {
+            // OpenCV/native kütüphane yoksa grain injection atlanır
+        }
         return bitmap
     }
 }

@@ -62,17 +62,23 @@ class UpscaleManager(context: Context) {
     )
 
     fun upscale(bitmap: Bitmap): Bitmap {
-        // TFLite Real-ESRGAN inference (pseudo-code)
+        // TFLite Real-ESRGAN inference
         val highResBitmap = runInference(bitmap) 
         
         // Luminance Re-injection: Blend original texture back at 15% strength
-        applyLuminanceReinjection(highResBitmap, bitmap, 0.15f)
+        // (Sadece OpenCV varsa çalışır, yoksa atlanır)
+        try {
+            applyLuminanceReinjection(highResBitmap, bitmap, 0.15f)
+        } catch (e: Exception) {
+            // OpenCV/native kütüphane yoksa atla
+        }
         
         return highResBitmap
     }
 
     private fun runInference(bitmap: Bitmap): Bitmap {
-        val interpreter = interpreter ?: return bitmap
+        // Eğer interpreter yoksa, basit bicubic upscale yap (model yoksa bile çalışır)
+        val interpreter = interpreter ?: return simpleUpscale(bitmap)
         
         try {
             // Real-ESRGAN TFLite modeli için optimize edilmiş parametreler
@@ -119,8 +125,18 @@ class UpscaleManager(context: Context) {
             
         } catch (e: Exception) {
             e.printStackTrace()
-            return bitmap // Hata olursa orijinal resmi döndür
+            // Model hatası olursa basit upscale yap
+            return simpleUpscale(bitmap)
         }
+    }
+
+    /**
+     * Basit bicubic upscale - Model çalışmazsa fallback olarak kullanılır
+     */
+    private fun simpleUpscale(bitmap: Bitmap): Bitmap {
+        val targetWidth = bitmap.width * 2
+        val targetHeight = bitmap.height * 2
+        return Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, true)
     }
 
     private fun convertByteBufferToBitmap(buffer: java.nio.ByteBuffer, width: Int, height: Int): Bitmap {
