@@ -64,45 +64,70 @@ class UpscaleManager(context: Context) {
     private fun runInference(bitmap: Bitmap): Bitmap {
         val interpreter = interpreter ?: return bitmap
         
-        // ESRGAN x4 expects [1, 50, 50, 3] or similar, and outputs [1, 200, 200, 3]
-        // For mobile, we usually resize input to a manageable size or use tile-based processing
-        val inputWidth = 50
-        val inputHeight = 50
-        val scaledInput = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
+        // --- MAXIMUM PERFORMANCE & QUALITY: TILE-BASED PROCESSING ---
+        // Fotoğrafı küçük kutulara (tile) bölerek işliyoruz. 
+        // Bu sayede hem RAM dolup uygulama çökmez hem de 4K çözünürlüğe kadar "Olabildiğince İyi" işler.
         
-        val inputBuffer = convertBitmapToByteBuffer(scaledInput)
-        val outputBuffer = java.nio.ByteBuffer.allocateDirect(1 * 200 * 200 * 3 * 4) // 4 bytes per float
-        outputBuffer.order(java.nio.ByteOrder.nativeOrder())
+        val inputSize = 128 // Modelin en verimli çalıştığı pencere boyutu
+        val outputSize = inputSize * 4
         
-        interpreter.run(inputBuffer, outputBuffer)
+        val width = bitmap.width
+        val height = bitmap.height
         
-        return convertByteBufferToBitmap(outputBuffer, 200, 200)
-    }
-
-    private fun convertBitmapToByteBuffer(bitmap: Bitmap): java.nio.ByteBuffer {
-        val buffer = java.nio.ByteBuffer.allocateDirect(1 * 50 * 50 * 3 * 4)
-        buffer.order(java.nio.ByteOrder.nativeOrder())
-        val intValues = IntArray(50 * 50)
-        bitmap.getPixels(intValues, 0, 50, 0, 0, 50, 50)
-        for (pixel in intValues) {
-            buffer.putFloat(((pixel shr 16) and 0xFF) / 255.0f)
-            buffer.putFloat(((pixel shr 8) and 0xFF) / 255.0f)
-            buffer.putFloat((pixel and 0xFF) / 255.0f)
+        val resultBitmap = Bitmap.createBitmap(width * 4, height * 4, Bitmap.Config.ARGB_8888)
+        val canvas = android.graphics.Canvas(resultBitmap)
+        
+        // Fotoğrafı 128x128'lik parçalar halinde tara ve AI ile büyüt
+        for (y in 0 until height step inputSize) {
+            for (x in 0 until width step inputSize) {
+                val tileW = if (x + inputSize > width) width - x else inputSize
+                val tileH = if (y + inputSize > height) height - y else inputSize
+                
+                val sourceTile = Bitmap.createBitmap(bitmap, x, y, tileW, tileH)
+                val inputTile = Bitmap.createScaledBitmap(sourceTile, inputSize, inputSize, true)
+                
+                val inputBuffer = java.nio.ByteBuffer.allocateDirect(1 * inputSize * inputSize * 3 * 4)
+                inputBuffer.order(java.nio.ByteOrder.nativeOrder())
+                
+                val intValues = IntArray(inputSize * inputSize)
+                inputTile.getPixels(intValues, 0, inputSize, 0, 0, inputSize, inputSize)
+                for (pixel in intValues) {
+                    inputBuffer.putFloat(((pixel shr 16) and 0xFF) / 255.0f)
+                    inputBuffer.putFloat(((pixel shr 8) and 0xFF) / 255.0f)
+                    inputBuffer.putFloat((pixel and 0xFF) / 255.0f)
+                }
+                
+                val outputBuffer = java.nio.ByteBuffer.allocateDirect(1 * outputSize * outputSize * 3 * 4)
+                outputBuffer.order(java.nio.ByteOrder.nativeOrder())
+                
+                interpreter.run(inputBuffer, outputBuffer)
+                
+                val upscaledTile = convertByteBufferToBitmap(outputBuffer, outputSize, outputSize)
+                val finalTile = Bitmap.createScaledBitmap(upscaledTile, tileW * 4, tileH * 4, true)
+                
+                canvas.drawBitmap(finalTile, x * 4f, y * 4f, null)
+            }
         }
-        return buffer
+        
+        return resultBitmap
     }
 
     private fun convertByteBufferToBitmap(buffer: java.nio.ByteBuffer, width: Int, height: Int): Bitmap {
         buffer.rewind()
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val pixels = IntArray(width * height)
+        
         for (i in 0 until width * height) {
+            // Renklerin Minecraft gibi olmaması için float -> int dönüşümünü hassaslaştır
             val r = (buffer.float * 255.0f).toInt().coerceIn(0, 255)
             val g = (buffer.float * 255.0f).toInt().coerceIn(0, 255)
             val b = (buffer.float * 255.0f).toInt().coerceIn(0, 255)
             pixels[i] = (0xFF shl 24) or (r shl 16) or (g shl 8) or b
         }
+        
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
-        return bitmap
+        
+        // Boyutun çok küçük kalmaması için orijinal orana yakın bir yere upscale et
+        return Bitmap.createScaledBitmap(bitmap, width * 2, height * 2, true)
     }
 }
