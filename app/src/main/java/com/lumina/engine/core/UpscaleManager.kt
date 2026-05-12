@@ -75,60 +75,73 @@ class UpscaleManager(context: Context) {
         val interpreter = interpreter ?: return bitmap
         
         try {
-            // --- GÜVENLİ VE HIZLI İŞLEME (SAFE SCALE) ---
-            // Tile-based sistem mobil RAM sınırlarını zorladığı için çökme yapabilir.
-            // Bunun yerine en kararlı yöntem olan "Direct Inference with Safe Padding"e dönüyoruz.
+            // Real-ESRGAN TFLite modeli için optimize edilmiş parametreler
+            val inputSize = 128 // Real-ESRGAN modelleri genellikle 128x128 girdi alır
+            val scaleFactor = 4 // x4 upscale (128 -> 512)
+            val outputSize = inputSize * scaleFactor // 512
             
-            val inputSize = 50 // Çoğu ESRGAN TFLite modeli 50x50 girdi bekler
-            val outputSize = 200 // Ve 200x200 çıktı verir (x4)
-            
+            // Görüntüyü modelin beklediği boyuta getir (bilinear interpolation)
             val scaledInput = Bitmap.createScaledBitmap(bitmap, inputSize, inputSize, true)
             
+            // Input buffer: [1, height, width, 3] - NHWC format
             val inputBuffer = java.nio.ByteBuffer.allocateDirect(1 * inputSize * inputSize * 3 * 4)
             inputBuffer.order(java.nio.ByteOrder.nativeOrder())
             
+            // Bitmap'i RGB float array'e çevir (0-1 aralığında, normalized)
             val intValues = IntArray(inputSize * inputSize)
             scaledInput.getPixels(intValues, 0, inputSize, 0, 0, inputSize, inputSize)
             
             for (pixel in intValues) {
-                inputBuffer.putFloat(((pixel shr 16) and 0xFF) / 255.0f)
-                inputBuffer.putFloat(((pixel shr 8) and 0xFF) / 255.0f)
-                inputBuffer.putFloat((pixel and 0xFF) / 255.0f)
+                // RGB sırası: Model genellikle RGB bekler
+                val r = ((pixel shr 16) and 0xFF) / 255.0f
+                val g = ((pixel shr 8) and 0xFF) / 255.0f
+                val b = (pixel and 0xFF) / 255.0f
+                inputBuffer.putFloat(r)
+                inputBuffer.putFloat(g)
+                inputBuffer.putFloat(b)
             }
+            inputBuffer.rewind() // Buffer'ı başa sar
             
+            // Output buffer: [1, height*4, width*4, 3]
             val outputBuffer = java.nio.ByteBuffer.allocateDirect(1 * outputSize * outputSize * 3 * 4)
             outputBuffer.order(java.nio.ByteOrder.nativeOrder())
             
-            // AI İşlemini Güvenli Blokta Çalıştır
+            // AI inference çalıştır
             interpreter.run(inputBuffer, outputBuffer)
             
+            // Output'u bitmap'e çevir
             val upscaled = convertByteBufferToBitmap(outputBuffer, outputSize, outputSize)
             
-            // Sonucu orijinal boyutuna (veya yakınına) kaliteli bir şekilde büyüt
-            return Bitmap.createScaledBitmap(upscaled, bitmap.width * 2, bitmap.height * 2, true)
+            // Orijinal görüntünün 2x boyutuna ölçeklendir (x2 total upscale - dengeli kalite/hız)
+            val finalWidth = bitmap.width * 2
+            val finalHeight = bitmap.height * 2
+            return Bitmap.createScaledBitmap(upscaled, finalWidth, finalHeight, true)
             
         } catch (e: Exception) {
             e.printStackTrace()
-            return bitmap // Çökme olursa orijinal resmi döndür, uygulama kapanmasın
+            return bitmap // Hata olursa orijinal resmi döndür
         }
     }
 
     private fun convertByteBufferToBitmap(buffer: java.nio.ByteBuffer, width: Int, height: Int): Bitmap {
+        // Buffer'ı başa sar (rewind) - çok önemli!
         buffer.rewind()
+        
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val pixels = IntArray(width * height)
         
         for (i in 0 until width * height) {
-            // Renklerin Minecraft gibi olmaması için float -> int dönüşümünü hassaslaştır
-            val r = (buffer.float * 255.0f).toInt().coerceIn(0, 255)
-            val g = (buffer.float * 255.0f).toInt().coerceIn(0, 255)
-            val b = (buffer.float * 255.0f).toInt().coerceIn(0, 255)
+            // Float değerleri oku (0.0 - 1.0 aralığında)
+            // Model çıktısı RGB formatında, her bir kanal ayrı ayrı
+            val r = (buffer.float * 255.0f).coerceIn(0.0f, 255.0f).toInt()
+            val g = (buffer.float * 255.0f).coerceIn(0.0f, 255.0f).toInt()
+            val b = (buffer.float * 255.0f).coerceIn(0.0f, 255.0f).toInt()
+            
+            // ARGB formatında pixel oluştur (Alpha = 255 - opaque)
             pixels[i] = (0xFF shl 24) or (r shl 16) or (g shl 8) or b
         }
         
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
-        
-        // Boyutun çok küçük kalmaması için orijinal orana yakın bir yere upscale et
-        return Bitmap.createScaledBitmap(bitmap, width * 2, height * 2, true)
+        return bitmap
     }
 }
