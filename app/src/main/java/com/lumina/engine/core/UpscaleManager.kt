@@ -62,18 +62,26 @@ class UpscaleManager(context: Context) {
     )
 
     fun upscale(bitmap: Bitmap): Bitmap {
-        // TFLite Real-ESRGAN inference
-        val highResBitmap = runInference(bitmap) 
-        
-        // Luminance Re-injection: Blend original texture back at 15% strength
-        // (Sadece OpenCV varsa çalışır, yoksa atlanır)
-        try {
-            applyLuminanceReinjection(highResBitmap, bitmap, 0.15f)
+        return try {
+            // TFLite Real-ESRGAN inference
+            val highResBitmap = runInference(bitmap) 
+            
+            // Luminance Re-injection (Sadece OpenCV varsa çalışır)
+            try {
+                applyLuminanceReinjection(highResBitmap, bitmap, 0.12f)
+            } catch (e: Exception) {
+                // OpenCV yoksa atla
+            }
+            
+            highResBitmap
+        } catch (e: OutOfMemoryError) {
+            e.printStackTrace()
+            // Bellek hatası durumunda basit upscale
+            simpleUpscale(bitmap)
         } catch (e: Exception) {
-            // OpenCV/native kütüphane yoksa atla
+            e.printStackTrace()
+            simpleUpscale(bitmap)
         }
-        
-        return highResBitmap
     }
 
     private fun runInference(bitmap: Bitmap): Bitmap {

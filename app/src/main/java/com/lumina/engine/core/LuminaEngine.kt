@@ -32,38 +32,65 @@ class LuminaEngine(private val context: Context) {
     private val textureManager = TextureManager()
 
     suspend fun processImage(inputBitmap: Bitmap, onProgress: (Int) -> Unit): Bitmap = withContext(Dispatchers.Default) {
+        var workingBitmap: Bitmap? = null
+        var upscaledBitmap: Bitmap? = null
+        var processedBitmap: Bitmap? = null
+        
         try {
-            // 0. Boyut kontrolü - çok büyük resimleri önce küçült (hız için kritik)
+            // 0. Boyut kontrolü - çok büyük resimleri önce küçült
             onProgress(5)
-            val workingBitmap = downsampleIfNeeded(inputBitmap)
+            workingBitmap = downsampleIfNeeded(inputBitmap)
             
-            // 1. Semantic Analysis (Pre-processing)
-            onProgress(20)
+            // Bellek temizliği önerisi
+            System.gc()
+            
+            // 1. Semantic Analysis
+            onProgress(15)
             val masks = segmentationManager.analyze(workingBitmap)
 
-            // 2. Neural Super-Resolution (Upscale)
-            onProgress(50)
-            val upscaledBitmap = upscaleManager.upscale(workingBitmap)
+            // 2. Neural Super-Resolution
+            onProgress(35)
+            upscaledBitmap = upscaleManager.upscale(workingBitmap)
+            
+            // Geçici bitmap temizliği
+            if (workingBitmap !== inputBitmap && workingBitmap !== upscaledBitmap) {
+                workingBitmap.recycle()
+            }
 
-            // 3. Hybrid Color Science (The Core Engine)
-            onProgress(80)
-            var processedBitmap = colorScience.applyHybridLogic(upscaledBitmap, masks)
+            // 3. Hybrid Color Science (Pixel Look)
+            onProgress(60)
+            processedBitmap = colorScience.applyHybridLogic(upscaledBitmap, masks)
+            
+            // Eğer renk işleme başarısız olursa upscaled'i kullan
+            if (processedBitmap == null) {
+                processedBitmap = upscaledBitmap
+            } else if (upscaledBitmap !== processedBitmap && upscaledBitmap !== inputBitmap) {
+                upscaledBitmap.recycle()
+            }
 
-            // 4. Anti-Plastic / Texture Injection
-            onProgress(95)
-            processedBitmap = textureManager.injectNaturalGrain(processedBitmap)
+            // 4. Texture Injection
+            onProgress(85)
+            processedBitmap = textureManager.injectNaturalGrain(processedBitmap ?: inputBitmap)
+            
+            // Final bellek temizliği
+            System.gc()
 
             onProgress(100)
-            processedBitmap
+            processedBitmap ?: inputBitmap
+            
         } catch (e: OutOfMemoryError) {
-            // Bellek yetersizse orijinal resmi döndür
             e.printStackTrace()
+            // Bellek temizliği
+            workingBitmap?.recycle()
+            if (upscaledBitmap !== inputBitmap) upscaledBitmap?.recycle()
+            if (processedBitmap !== inputBitmap) processedBitmap?.recycle()
+            System.gc()
             onProgress(100)
             inputBitmap
         } catch (e: Exception) {
             e.printStackTrace()
             onProgress(100)
-            inputBitmap
+            processedBitmap ?: upscaledBitmap ?: workingBitmap ?: inputBitmap
         }
     }
     
