@@ -404,9 +404,9 @@ class ColorScience {
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
     }
     
-    // Hızlı üs alma - Math.pow yerine
+    // Hızlı üs alma - Float extension
     private fun fastPow(base: Float, exp: Float): Float {
-        return kotlin.math.pow(base, exp)
+        return base.pow(exp)
     }
 
     /**
