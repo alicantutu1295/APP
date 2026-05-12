@@ -1,9 +1,21 @@
 package com.lumina.engine
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.ImageDecoder
+import android.graphics.Paint
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -12,20 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lumina.engine.core.LuminaEngine
+import com.lumina.engine.ui.components.CompareSlider
 import com.lumina.engine.ui.theme.LuminaTheme
 import com.lumina.engine.ui.theme.OneUIPrimary
-import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
-import com.lumina.engine.core.LuminaEngine
-
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.core.*
-import com.lumina.engine.ui.components.CompareSlider
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +49,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import android.graphics.ImageDecoder
-import android.os.Build
-import android.provider.MediaStore
 
 @Composable
 fun LuminaMainScreen() {
