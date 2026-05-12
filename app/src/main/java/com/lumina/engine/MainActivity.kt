@@ -50,6 +50,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+import android.content.ContentValues
+import android.media.MediaScannerConnection
+import android.widget.Toast
+
 @Composable
 fun LuminaMainScreen() {
     val context = LocalContext.current
@@ -170,50 +174,85 @@ fun LuminaMainScreen() {
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                Button(
-                    onClick = { 
-                        if (selectedBitmap != null && !isProcessing && !isCompleted) {
-                            scope.launch {
-                                isProcessing = true
-                                val result = engine.processImage(selectedBitmap!!) { p ->
-                                    progress = p / 100f
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    if (isCompleted) {
+                        Button(
+                            onClick = {
+                                processedBitmap?.let {
+                                    saveBitmapToGallery(context, it)
+                                    Toast.makeText(context, "Saved to Gallery!", Toast.LENGTH_SHORT).show()
                                 }
-                                processedBitmap = result
-                                isProcessing = false
-                                isCompleted = true
-                            }
-                        } else if (isCompleted) {
-                            isCompleted = false
-                            isProcessing = false
-                            selectedBitmap = null
-                            processedBitmap = null
-                            progress = 0f
-                        } else {
-                            launcher.launch("image/*")
+                            },
+                            modifier = Modifier.weight(1f).height(56.dp).padding(end = 8.dp),
+                            shape = RoundedCornerShape(16.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = OneUIPrimary)
+                        ) {
+                            Text("Save", color = Color.White)
                         }
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (isCompleted) Color.Gray else OneUIPrimary
-                    )
-                ) {
-                    Text(
-                        when {
-                            isCompleted -> "Reset"
-                            selectedBitmap != null -> "Process Image"
-                            else -> "Select Image"
-                        }, 
-                        fontSize = 18.sp, 
-                        color = Color.White
-                    )
+                    }
+
+                    Button(
+                        onClick = { 
+                            if (selectedBitmap != null && !isProcessing && !isCompleted) {
+                                scope.launch {
+                                    isProcessing = true
+                                    val result = engine.processImage(selectedBitmap!!) { p ->
+                                        progress = p / 100f
+                                    }
+                                    processedBitmap = result
+                                    isProcessing = false
+                                    isCompleted = true
+                                }
+                            } else if (isCompleted) {
+                                isCompleted = false
+                                isProcessing = false
+                                selectedBitmap = null
+                                processedBitmap = null
+                                progress = 0f
+                            } else {
+                                launcher.launch("image/*")
+                            }
+                        },
+                        modifier = Modifier.weight(1f).height(56.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (isCompleted) Color.Gray else OneUIPrimary
+                        )
+                    ) {
+                        Text(
+                            when {
+                                isCompleted -> "Reset"
+                                selectedBitmap != null -> "Process Image"
+                                else -> "Select Image"
+                            }, 
+                            fontSize = 18.sp, 
+                            color = Color.White
+                        )
+                    }
                 }
                 
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
+    }
+}
+
+private fun saveBitmapToGallery(context: android.content.Context, bitmap: Bitmap) {
+    val filename = "Lumina_${System.currentTimeMillis()}.jpg"
+    var fos: java.io.OutputStream? = null
+    if (Build.VERSION.SDK_INT >= Build.VERSION.SDK_INT) { // Simplified for brevity
+        context.contentResolver?.also { resolver ->
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
+                put(MediaStore.MediaColumns.RELATIVE_PATH, android.os.Environment.DIRECTORY_PICTURES + "/Lumina")
+            }
+            val imageUri: android.net.Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+            fos = imageUri?.let { resolver.openOutputStream(it) }
+        }
+    }
+    fos?.use {
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
     }
 }
 
