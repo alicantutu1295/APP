@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.22.1)
 
 project("luminaengine")
 
-# OpenCV is optional for initial build to avoid configuration errors
-# find_package(OpenCV REQUIRED)
+# Use the opencvDir passed from Gradle
+set(OpenCV_DIR ${opencvDir})
+find_package(OpenCV REQUIRED)
 
 add_library(
     luminaengine
@@ -16,5 +17,5 @@ target_link_libraries(
     android
     log
     jnigraphics
-    # ${OpenCV_LIBS}
+    ${OpenCV_LIBS}
 )

@@ -74,6 +74,15 @@ android {
             version '3.22.1'
         }
     }
+
+    defaultConfig {
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17"
+                arguments "-DopencvDir=${project.findProperty('opencvDir') ?: ''}"
+            }
+        }
+    }
 }
 
 dependencies {

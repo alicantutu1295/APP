@@ -26,8 +26,13 @@ jobs:
       with:
         gradle-version: 8.5
 
+    - name: Download OpenCV Android SDK
+      run: |
+        wget https://github.com/opencv/opencv/releases/download/4.9.0/opencv-4.9.0-android-sdk.zip
+        unzip opencv-4.9.0-android-sdk.zip -d opencv-sdk
+
     - name: Build with Gradle
-      run: gradle assembleDebug --warning-mode all --stacktrace
+      run: gradle assembleDebug --warning-mode all --stacktrace -PopencvDir=$GITHUB_WORKSPACE/opencv-sdk/OpenCV-android-sdk/sdk/native/jni
 
     - name: List build directory
       run: ls -R app/build/outputs/
