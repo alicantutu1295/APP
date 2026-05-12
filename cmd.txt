@@ -1,0 +1,778 @@
+05-12 23:06:32.211  1699  2583 E HandwritingModeController: Cannot get requestId: Handwriting was not initialized.
+05-12 23:06:32.217  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Surface(name=TransientLaunchOverlayToken{9ab5ea6 token=android.os.BinderProxy@6ec6001})/@0xc7933b4_transition-leash#8823
+05-12 23:06:32.217  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Surface(name=Task=1)/@0xe940bdd_transition-leash#8824
+05-12 23:06:32.221  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine amplitude : 8750
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine packet_cnt : 1
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine total_size : 4
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine : 4 7 8750 2050 0
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: do_on for timeoutMs: 1
+05-12 23:06:32.241  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:1
+05-12 23:06:32.242  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:06:32.242  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine OK
+05-12 23:06:32.257  1473  1541 E SurfaceFlinger: Caller needs permission android.permission.WAKEUP_SURFACE_FLINGER to use eEarlyWakeup[Start|End] flags
+05-12 23:06:32.283  1699  3614 E KernelCpuUidFullTimeReader: Negative delta from freq time for uid: 90006, delta: -26
+05-12 23:06:32.391  1473  1541 E SurfaceFlinger: Caller needs permission android.permission.WAKEUP_SURFACE_FLINGER to use eEarlyWakeup[Start|End] flags
+05-12 23:06:32.461  1390  1390 E SecVibrator-HAL-AIDL-CORE: V_1_0: Vibrator off
+05-12 23:06:32.461  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:0
+05-12 23:06:32.462  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:06:32.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616392
+05-12 23:06:32.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:32.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:32.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:32.887  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:06:32.940  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=Task=3724)/@0xab96177_transition-leash#8832
+05-12 23:06:33.011  1699  4893 E TransitionChain: Can't collect into a chain with no transition
+05-12 23:06:33.015  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:06:33.023  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Surface(name=Task=3724)/@0xab96177_transition-leash#8832
+05-12 23:06:33.056  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=d933eea InputMethod)/@0xa957b51 - animation-leash of insets_animation#8833
+05-12 23:06:33.073  1699  4893 E WindowManager: win=Window{375ea67 u0 com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.MainActivity} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=8 caller=com.android.server.wm.ActivityRecord.destroySurfaces:25 com.android.server.wm.ActivityRecord.activityStopped:192 com.android.server.wm.ActivityClientController.activityStopped:97 android.app.IActivityClientController$Stub.onTransact:740 com.android.server.wm.ActivityClientController.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:06:33.091  1699  3612 E WindowManager: win=Window{fda6f8b u0 com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=4 caller=com.android.server.wm.ActivityRecord.destroySurfaces:25 com.android.server.wm.ActivityRecord.activityStopped:192 com.android.server.wm.ActivityClientController.activityStopped:97 android.app.IActivityClientController$Stub.onTransact:740 com.android.server.wm.ActivityClientController.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:06:33.122  6020 23749 E AtomicFile: Failed to rename /data/user_de/0/com.samsung.android.honeyboard/files/selected.json.new to /data/user_de/0/com.samsung.android.honeyboard/files/selected.json
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine amplitude : 8750
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine packet_cnt : 1
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine total_size : 4
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine : 4 7 4375 2050 0
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: do_on for timeoutMs: 1
+05-12 23:06:33.151  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:1
+05-12 23:06:33.152  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:06:33.152  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine OK
+05-12 23:06:33.361  1390  1390 E SecVibrator-HAL-AIDL-CORE: V_1_0: Vibrator off
+05-12 23:06:33.361  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:0
+05-12 23:06:33.361  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:06:33.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616393
+05-12 23:06:33.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:33.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:33.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:33.997  1699  5167 E ClipboardService: Denying clipboard access to com.sec.android.app.myfiles, application is not in focus nor is it a system service for user 0
+05-12 23:06:34.004  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=Task=3792)/@0x67fa931_transition-leash#8837
+05-12 23:06:34.004  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=Task=3792)/@0x67fa931_transition-leash#8837
+05-12 23:06:34.024  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Surface(name=Task=3792)/@0x67fa931_transition-leash#8837
+05-12 23:06:34.035  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:06:34.053  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=d933eea InputMethod)/@0xa957b51 - animation-leash of insets_animation#8842
+05-12 23:06:34.115  6020 23770 E AtomicFile: Failed to rename /data/user_de/0/com.samsung.android.honeyboard/files/selected.json.new to /data/user_de/0/com.samsung.android.honeyboard/files/selected.json
+05-12 23:06:34.279  1699  2017 E WindowManager: win=Window{edec710 u0 SnapshotStartingWindow for taskId=3792 EXITING} destroySurfaces: appStopped=false cleanupOnResume=false win.mWindowRemovalAllowed=true win.mRemoveOnExit=true win.mViewVisibility=0 caller=com.android.server.wm.WindowState.onExitAnimationDone:224 com.android.server.wm.WindowState.onAnimationFinished:161 com.android.server.wm.WindowContainer$$ExternalSyntheticLambda8.onAnimationFinished:3 com.android.server.wm.SurfaceAnimator$$ExternalSyntheticLambda0.onAnimationFinished:69 com.android.server.wm.LocalAnimationAdapter$$ExternalSyntheticLambda0.run:10 android.os.Handler.handleCallback:995 android.os.Handler.dispatchMessage:103
+05-12 23:06:34.286  1473  1473 E SurfaceFlinger: alpha changed 0.060 -> 0.000 - Surface(name=edec710 SnapshotStartingWindow for taskId=3792)/@0x572e80f - animation-leash of window_animation#8843
+05-12 23:06:34.370  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:06:34.380  1699  3612 E WindowManager: win=Window{e8aae89 u0 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=8 caller=com.android.server.wm.ActivityRecord.destroySurfaces:25 com.android.server.wm.ActivityRecord.activityStopped:192 com.android.server.wm.ActivityClientController.activityStopped:97 android.app.IActivityClientController$Stub.onTransact:740 com.android.server.wm.ActivityClientController.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:06:34.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616394
+05-12 23:06:34.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:34.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:34.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:34.898  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616394898 lastDateWindow=1778610512000
+05-12 23:06:35.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616395
+05-12 23:06:35.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:35.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:35.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:36.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616396
+05-12 23:06:36.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:36.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:36.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:36.716 15616 15735 E Finsky  : [160] Dex embeddings calculation failed
+05-12 23:06:36.716 15616 15735 E Finsky  : com.google.android.finsky.verifier.apkanalysis.client.ApkAnalysisException: DEX_EMBEDDINGS_TIMEOUT while analyzing APK
+05-12 23:06:36.716 15616 15735 E Finsky  :      at bbrd.b(PG:567)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at cbag.oF(PG:5)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at cbrk.oz(PG:7)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at cbgb.oF(PG:21)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at cbag.oF(PG:31)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at cbhq.run(PG:101)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at vpo.run(PG:638)
+05-12 23:06:36.716 15616 15735 E Finsky  :      at java.lang.Thread.run(Thread.java:1564)
+05-12 23:06:36.727 15616 15759 E AbstractLogEventBuilder: The provided ProductIdOrigin 3 is not one of the process-level expected values: 1 or 2
+05-12 23:06:36.777 15616 15735 E Finsky  : [160] Dex embeddings calculation failed
+05-12 23:06:36.777 15616 15735 E Finsky  : com.google.android.finsky.verifier.apkanalysis.client.ApkAnalysisException: DEX_EMBEDDINGS_TIMEOUT while analyzing APK
+05-12 23:06:36.777 15616 15735 E Finsky  :      at bbrd.b(PG:567)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at cbag.oF(PG:5)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at cbrk.oz(PG:7)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at cbgb.oF(PG:21)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at cbag.oF(PG:31)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at cbhq.run(PG:101)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at vpo.run(PG:638)
+05-12 23:06:36.777 15616 15735 E Finsky  :      at java.lang.Thread.run(Thread.java:1564)
+05-12 23:06:36.782 15616 15755 E AbstractLogEventBuilder: The provided ProductIdOrigin 3 is not one of the process-level expected values: 1 or 2
+05-12 23:06:36.940  1699  2070 E system_server: updateValue is called with a value 61182, which is lower than the previous value 61765
+05-12 23:06:36.940  1699  2070 E system_server: updateValue is called with a value 127828, which is lower than the previous value 127829
+05-12 23:06:36.941  1699  2070 E system_server: updateValue is called with a value 19726, which is lower than the previous value 19727
+05-12 23:06:37.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616397
+05-12 23:06:37.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:37.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:37.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:37.947  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616397947 lastDateWindow=1778610512000
+05-12 23:06:38.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616398
+05-12 23:06:38.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:38.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:38.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:39.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616399
+05-12 23:06:39.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:39.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:39.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:40.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616400
+05-12 23:06:40.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:40.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:40.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:40.991  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616400991 lastDateWindow=1778610512000
+05-12 23:06:41.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616401
+05-12 23:06:41.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:41.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:41.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:42.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616402
+05-12 23:06:42.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:42.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:42.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:43.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616403
+05-12 23:06:43.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:43.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:43.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:44.036  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616404036 lastDateWindow=1778610512000
+05-12 23:06:44.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616404
+05-12 23:06:44.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:44.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:44.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:45.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616405
+05-12 23:06:45.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:45.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:45.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:46.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616406
+05-12 23:06:46.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:46.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:46.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:47.080  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616407080 lastDateWindow=1778610512000
+05-12 23:06:47.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616407
+05-12 23:06:47.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:47.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:47.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:48.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616408
+05-12 23:06:48.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:48.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:48.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:48.986  1278  3777 E libprotobuf-native: [libprotobuf ERROR external/protobuf/src/google/protobuf/message_lite.cc:123] Can't parse message of type "sns_std_sensor_event" because it is missing required fields: (cannot determine missing fields for lite message)
+05-12 23:06:49.118  1280  2694 E android.hardware.usb@1.3-service.coral: fopen failed
+05-12 23:06:49.118  1280  2694 E android.hardware.usb@1.3-service.coral: Failed to open moisture_detection_enabled
+05-12 23:06:49.120  1280  2694 E android.hardware.usb@1.3-service.coral: fopen failed
+05-12 23:06:49.120  1280  2694 E android.hardware.usb@1.3-service.coral: Failed to open moisture_detection_enabled
+05-12 23:06:49.124  1249  1341 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5adc went down
+05-12 23:06:49.125  1249  1341 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5add went down
+05-12 23:06:49.125  1249  1341 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5ade went down
+05-12 23:06:49.125  1249  1341 E minksocket: MinkIPC_QRTR_Service: client with node 1 port 5adf went down
+05-12 23:06:49.326 23779 23805 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE: Battery 0 : Params not found for manuf Z or default
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE: Exception : java.lang.Exception: No Battery Eligible!!!
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at com.samsung.sait.sohservice.service.BatteryService.onStartCommand(BatteryService.java:50)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.app.ActivityThread.handleServiceArgs(ActivityThread.java:6087)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.app.ActivityThread.-$$Nest$mhandleServiceArgs(Unknown Source:0)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2974)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.os.Handler.dispatchMessage(Handler.java:110)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.os.Looper.loopOnce(Looper.java:273)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.os.Looper.loop(Looper.java:363)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at android.app.ActivityThread.main(ActivityThread.java:10060)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at java.lang.reflect.Method.invoke(Native Method)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:632)
+05-12 23:06:49.336 23779 23779 E SOH_SERVICE:   at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:975)
+05-12 23:06:49.449  1280  2694 E android.hardware.usb@1.3-service.coral: fopen failed
+05-12 23:06:49.449  1280  2694 E android.hardware.usb@1.3-service.coral: Failed to open moisture_detection_enabled
+05-12 23:06:49.450  1280  2694 E android.hardware.usb@1.3-service.coral: fopen failed
+05-12 23:06:49.450  1280  2694 E android.hardware.usb@1.3-service.coral: Failed to open moisture_detection_enabled
+05-12 23:06:49.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616409
+05-12 23:06:49.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:49.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:49.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:49.539  1450  1696 E EffectsConfig: Invalid <stream|device> type sec_voice_communication: <stream type="sec_voice_communication">
+05-12 23:06:49.539  1450  1696 E EffectsConfig:     <apply effect="aec"/>
+05-12 23:06:49.539  1450  1696 E EffectsConfig: </stream>
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector: Cannot acquire BluetoothActivityEnergyInfo
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector: java.util.concurrent.ExecutionException: java.lang.RuntimeException: error: 11
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:372)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2072)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector.collectStats(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:202)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.PowerStatsCollector$$ExternalSyntheticLambda0.run(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:3)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.handleCallback(Handler.java:995)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.dispatchMessage(Handler.java:103)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loopOnce(Looper.java:273)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loop(Looper.java:363)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.HandlerThread.run(HandlerThread.java:85)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector: Caused by: java.lang.RuntimeException: error: 11
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector$1.onBluetoothActivityEnergyInfoError(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:12)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.lambda$onBluetoothActivityEnergyInfoAvailable$0(BluetoothAdapter.java:1226)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.lambda$executeFromBinder$0(BluetoothUtils.java:343)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.SystemServerInitThreadPool$$ExternalSyntheticLambda0.execute(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:1)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.executeFromBinder(BluetoothUtils.java:343)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.onBluetoothActivityEnergyInfoAvailable(BluetoothAdapter.java:1224)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.IBluetoothActivityEnergyInfoListener$Stub.onTransact(IBluetoothActivityEnergyInfoListener.java:98)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransactInternal(Binder.java:1462)
+05-12 23:06:49.539  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransact(Binder.java:1401)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector: Cannot acquire BluetoothActivityEnergyInfo
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector: java.util.concurrent.ExecutionException: java.lang.RuntimeException: error: 11
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:372)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2072)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector.collectStats(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:202)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.PowerStatsCollector$$ExternalSyntheticLambda0.run(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:3)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.handleCallback(Handler.java:995)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.dispatchMessage(Handler.java:103)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loopOnce(Looper.java:273)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loop(Looper.java:363)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.HandlerThread.run(HandlerThread.java:85)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector: Caused by: java.lang.RuntimeException: error: 11
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector$1.onBluetoothActivityEnergyInfoError(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:12)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.lambda$onBluetoothActivityEnergyInfoAvailable$0(BluetoothAdapter.java:1226)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.lambda$executeFromBinder$0(BluetoothUtils.java:343)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.SystemServerInitThreadPool$$ExternalSyntheticLambda0.execute(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:1)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.executeFromBinder(BluetoothUtils.java:343)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.onBluetoothActivityEnergyInfoAvailable(BluetoothAdapter.java:1224)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.IBluetoothActivityEnergyInfoListener$Stub.onTransact(IBluetoothActivityEnergyInfoListener.java:98)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransactInternal(Binder.java:1462)
+05-12 23:06:49.614  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransact(Binder.java:1401)
+05-12 23:06:49.637  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine
+05-12 23:06:49.637  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine amplitude : 8750
+05-12 23:06:49.637  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine packet_cnt : 2
+05-12 23:06:49.637  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine total_size : 8
+05-12 23:06:49.637  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine : 8 70 0 0 0 100 8750 0 0
+05-12 23:06:49.638  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: do_on for timeoutMs: 1
+05-12 23:06:49.638  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:1
+05-12 23:06:49.639  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:06:49.639  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine OK
+05-12 23:06:49.655 23338 23837 E d.process.media: start waitControls: Success
+05-12 23:06:49.684  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=923f9ee Toast)/@0x813e81c - animation-leash of window_animation#8847
+05-12 23:06:49.684  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=923f9ee Toast)/@0x813e81c - animation-leash of window_animation#8847
+05-12 23:06:49.692  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.032 - Surface(name=923f9ee Toast)/@0x813e81c - animation-leash of window_animation#8847
+05-12 23:06:49.713  1278 23777 E libprotobuf-native: [libprotobuf ERROR external/protobuf/src/google/protobuf/message_lite.cc:123] Can't parse message of type "sns_std_sensor_event" because it is missing required fields: (cannot determine missing fields for lite message)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector: Cannot acquire BluetoothActivityEnergyInfo
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector: java.util.concurrent.ExecutionException: java.lang.RuntimeException: error: 11
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:372)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2072)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector.collectStats(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:202)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.PowerStatsCollector$$ExternalSyntheticLambda0.run(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:3)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.handleCallback(Handler.java:995)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.dispatchMessage(Handler.java:103)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loopOnce(Looper.java:273)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loop(Looper.java:363)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.HandlerThread.run(HandlerThread.java:85)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector: Caused by: java.lang.RuntimeException: error: 11
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector$1.onBluetoothActivityEnergyInfoError(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:12)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.lambda$onBluetoothActivityEnergyInfoAvailable$0(BluetoothAdapter.java:1226)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.lambda$executeFromBinder$0(BluetoothUtils.java:343)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.SystemServerInitThreadPool$$ExternalSyntheticLambda0.execute(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:1)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.executeFromBinder(BluetoothUtils.java:343)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.onBluetoothActivityEnergyInfoAvailable(BluetoothAdapter.java:1224)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.IBluetoothActivityEnergyInfoListener$Stub.onTransact(IBluetoothActivityEnergyInfoListener.java:98)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransactInternal(Binder.java:1462)
+05-12 23:06:49.790  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransact(Binder.java:1401)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector: Cannot acquire BluetoothActivityEnergyInfo
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector: java.util.concurrent.ExecutionException: java.lang.RuntimeException: error: 11
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:372)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2072)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector.collectStats(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:202)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.PowerStatsCollector$$ExternalSyntheticLambda0.run(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:3)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.handleCallback(Handler.java:995)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Handler.dispatchMessage(Handler.java:103)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loopOnce(Looper.java:273)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Looper.loop(Looper.java:363)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.HandlerThread.run(HandlerThread.java:85)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector: Caused by: java.lang.RuntimeException: error: 11
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.power.stats.BluetoothPowerStatsCollector$1.onBluetoothActivityEnergyInfoError(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:12)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.lambda$onBluetoothActivityEnergyInfoAvailable$0(BluetoothAdapter.java:1226)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.lambda$executeFromBinder$0(BluetoothUtils.java:343)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at com.android.server.SystemServerInitThreadPool$$ExternalSyntheticLambda0.execute(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:1)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothUtils.executeFromBinder(BluetoothUtils.java:343)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.BluetoothAdapter$OnBluetoothActivityEnergyInfoProxy.onBluetoothActivityEnergyInfoAvailable(BluetoothAdapter.java:1224)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.bluetooth.IBluetoothActivityEnergyInfoListener$Stub.onTransact(IBluetoothActivityEnergyInfoListener.java:98)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransactInternal(Binder.java:1462)
+05-12 23:06:49.854  1699  2070 E BluetoothPowerStatsCollector:  at android.os.Binder.execTransact(Binder.java:1401)
+05-12 23:06:49.915  1770 23846 E MediaCodec: Media Quality Service not found.
+05-12 23:06:49.917  1770 23847 E mediaserver: Failed to query component interface for required system resources: 6
+05-12 23:06:49.924  1873  2088 E Codec2-ComponentInterface: We have a failed config
+05-12 23:06:49.956  3438  3438 E ThemeUtils: View class com.airbnb.lottie.LottieAnimationView is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).
+05-12 23:06:49.962  1450  1696 E EffectsConfig: Invalid <stream|device> type sec_voice_communication: <stream type="sec_voice_communication">
+05-12 23:06:49.962  1450  1696 E EffectsConfig:     <apply effect="aec"/>
+05-12 23:06:49.962  1450  1696 E EffectsConfig: </stream>
+05-12 23:06:49.968  3438  3438 E ThemeUtils: View class com.airbnb.lottie.LottieAnimationView is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).
+05-12 23:06:50.113  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616410113 lastDateWindow=1778610512000
+05-12 23:06:50.121  1390  1390 E SecVibrator-HAL-AIDL-CORE: V_1_0: Vibrator off
+05-12 23:06:50.121  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:0
+05-12 23:06:50.122  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:06:50.194  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:06:50.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616410
+05-12 23:06:50.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:50.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:50.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:50.519  1699  2040 E Watchdog: !@Sync: 309 heap(MB): 133 / 166 FD: 1278 [2026-05-12 23:06:50.519]
+05-12 23:06:51.325  3438  3438 E MULTISIM-PROD-REPO: isDataBlocked : mSimCardManagerService is null.
+05-12 23:06:51.389  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:06:51.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616411
+05-12 23:06:51.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:51.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:51.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:52.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616412
+05-12 23:06:52.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:52.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:52.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:52.895  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:06:53.135  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616413135 lastDateWindow=1778610512000
+05-12 23:06:53.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616413
+05-12 23:06:53.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:53.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:53.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:54.002  1473  1473 E SurfaceFlinger: alpha changed 0.008 -> 0.000 - Surface(name=923f9ee Toast)/@0x813e81c - animation-leash of window_animation#8852
+05-12 23:06:54.328  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:06:54.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616414
+05-12 23:06:54.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:54.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:54.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:55.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616415
+05-12 23:06:55.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:55.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:55.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:56.165  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616416165 lastDateWindow=1778610512000
+05-12 23:06:56.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616416
+05-12 23:06:56.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:56.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:56.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:57.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616417
+05-12 23:06:57.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:57.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:57.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:57.715  1278 23777 E libprotobuf-native: [libprotobuf ERROR external/protobuf/src/google/protobuf/message_lite.cc:123] Can't parse message of type "sns_std_sensor_event" because it is missing required fields: (cannot determine missing fields for lite message)
+05-12 23:06:58.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616418
+05-12 23:06:58.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:58.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:58.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:06:59.192  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616419192 lastDateWindow=1778610512000
+05-12 23:06:59.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616419
+05-12 23:06:59.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:06:59.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:06:59.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:00.044  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:00.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616420
+05-12 23:07:00.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:00.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:00.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:01.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616421
+05-12 23:07:01.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:01.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:01.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:02.245  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616422245 lastDateWindow=1778610512000
+05-12 23:07:02.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616422
+05-12 23:07:02.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:02.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:02.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:03.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616423
+05-12 23:07:03.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:03.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:03.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:04.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616424
+05-12 23:07:04.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:04.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:04.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:05.283  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616425283 lastDateWindow=1778610512000
+05-12 23:07:05.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616425
+05-12 23:07:05.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:05.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:05.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:06.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616426
+05-12 23:07:06.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:06.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:06.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:07.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616427
+05-12 23:07:07.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:07.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:07.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:08.323  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616428322 lastDateWindow=1778610512000
+05-12 23:07:08.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616428
+05-12 23:07:08.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:08.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:08.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:09.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616429
+05-12 23:07:09.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:09.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:09.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:10.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616430
+05-12 23:07:10.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:10.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:10.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:11.364  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616431364 lastDateWindow=1778610512000
+05-12 23:07:11.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616431
+05-12 23:07:11.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:11.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:11.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:12.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616432
+05-12 23:07:12.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:12.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:12.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:13.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616433
+05-12 23:07:13.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:13.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:13.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:14.403  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616434403 lastDateWindow=1778610512000
+05-12 23:07:14.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616434
+05-12 23:07:14.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:14.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:14.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:15.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616435
+05-12 23:07:15.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:15.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:15.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:16.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616436
+05-12 23:07:16.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:16.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:16.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:17.067  3438  3438 E NowBarCardStackView: getTopCard topCard is null view size = 0
+05-12 23:07:17.115  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:17.342  1699  3417 E WindowManager: win=Window{7ab9dd3 u0 NotificationShade} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=4 caller=com.android.server.wm.WindowManagerService.tryStartExitingAnimation:134 com.android.server.wm.WindowManagerService.relayoutWindow:1138 com.android.server.wm.Session.relayout:27 android.view.IWindowSession$Stub.onTransact:829 com.android.server.wm.Session.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:07:17.344  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:07:17.439  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616437439 lastDateWindow=1778610512000
+05-12 23:07:17.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616437
+05-12 23:07:17.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:17.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:17.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:18.281  1699  2583 E HandwritingModeController: Cannot get requestId: Handwriting was not initialized.
+05-12 23:07:18.332  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=TransientLaunchOverlayToken{9ab5ea6 token=android.os.BinderProxy@6ec6001})/@0x7210ffe_transition-leash#8858
+05-12 23:07:18.332  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=Task=1)/@0x867635f_transition-leash#8859
+05-12 23:07:18.335  3802 23136 E AppIconSolution: Couldn't get theme package resources, package is null
+05-12 23:07:18.338  1699  2583 E HandwritingModeController: Cannot get requestId: Handwriting was not initialized.
+05-12 23:07:18.340  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Surface(name=TransientLaunchOverlayToken{9ab5ea6 token=android.os.BinderProxy@6ec6001})/@0x7210ffe_transition-leash#8858
+05-12 23:07:18.340  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Surface(name=Task=1)/@0x867635f_transition-leash#8859
+05-12 23:07:18.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616438
+05-12 23:07:18.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:18.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:18.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:18.617  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:18.913  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=Task=3792)/@0xec671ac_transition-leash#8860
+05-12 23:07:18.939  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:07:18.957  1699  3612 E WindowManager: win=Window{375ea67 u0 com.sec.android.app.myfiles/com.sec.android.app.myfiles.ui.MainActivity} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=8 caller=com.android.server.wm.ActivityRecord.destroySurfaces:25 com.android.server.wm.ActivityRecord.activityStopped:192 com.android.server.wm.ActivityClientController.activityStopped:97 android.app.IActivityClientController$Stub.onTransact:740 com.android.server.wm.ActivityClientController.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:07:18.962  6020 23931 E AtomicFile: Failed to rename /data/user_de/0/com.samsung.android.honeyboard/files/selected.json.new to /data/user_de/0/com.samsung.android.honeyboard/files/selected.json
+05-12 23:07:18.963  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=d933eea InputMethod)/@0xa957b51 - animation-leash of insets_animation#8863
+05-12 23:07:19.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616439
+05-12 23:07:19.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:19.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:19.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:20.476  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616440475 lastDateWindow=1778610512000
+05-12 23:07:20.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616440
+05-12 23:07:20.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:20.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:20.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:20.525  1699  2040 E Watchdog: !@Sync: 310 heap(MB): 143 / 166 FD: 1279 [2026-05-12 23:07:20.524]
+05-12 23:07:21.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616441
+05-12 23:07:21.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:21.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:21.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:22.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616442
+05-12 23:07:22.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:22.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:22.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:22.575  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:07:23.502  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616443502 lastDateWindow=1778610512000
+05-12 23:07:23.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616443
+05-12 23:07:23.504  1455  1466 E HeatmapThread: !@Entered the read from path function
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/extended_heatmap', errno = 13
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@Extended_heatmap efs Forced Reset
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@Read Extended_heatmap from efs is:
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@Write Extended Heatmap to efs is: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/extended_heatmap', errno = 13
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:23.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:24.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616444
+05-12 23:07:24.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:24.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:24.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:25.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616445
+05-12 23:07:25.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:25.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:25.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:26.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616446
+05-12 23:07:26.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:26.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:26.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:26.550  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616446550 lastDateWindow=1778610512000
+05-12 23:07:27.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616447
+05-12 23:07:27.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:27.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:27.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:28.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616448
+05-12 23:07:28.506  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:28.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:28.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:29.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616449
+05-12 23:07:29.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:29.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:29.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:29.593  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616449593 lastDateWindow=1778610512000
+05-12 23:07:30.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616450
+05-12 23:07:30.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:30.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:30.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:31.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616451
+05-12 23:07:31.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:31.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:31.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:32.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616452
+05-12 23:07:32.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:32.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:32.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:32.631  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616452631 lastDateWindow=1778610512000
+05-12 23:07:33.190  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine
+05-12 23:07:33.191  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine amplitude : 8750
+05-12 23:07:33.191  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine packet_cnt : 1
+05-12 23:07:33.191  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine total_size : 4
+05-12 23:07:33.191  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine : 4 7 8750 2050 0
+05-12 23:07:33.191  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: do_on for timeoutMs: 1
+05-12 23:07:33.191  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:1
+05-12 23:07:33.192  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:07:33.192  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine OK
+05-12 23:07:33.194  1278 23777 E libprotobuf-native: [libprotobuf ERROR external/protobuf/src/google/protobuf/message_lite.cc:123] Can't parse message of type "sns_std_sensor_event" because it is missing required fields: (cannot determine missing fields for lite message)
+05-12 23:07:33.208  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:07:33.254  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:33.257  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=Task=3724)/@0x7d3ff2c_transition-leash#8868
+05-12 23:07:33.273  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.002 - Surface(name=Task=3724)/@0x7d3ff2c_transition-leash#8868
+05-12 23:07:33.307  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=d933eea InputMethod)/@0xa957b51 - animation-leash of insets_animation#8870
+05-12 23:07:33.410  1390  1390 E SecVibrator-HAL-AIDL-CORE: V_1_0: Vibrator off
+05-12 23:07:33.410  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:0
+05-12 23:07:33.411  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:07:33.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616453
+05-12 23:07:33.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:33.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:33.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:33.557  1473  1473 E SurfaceFlinger: alpha changed 0.002 -> 0.000 - Surface(name=Task=1)/@0x7c7e1fb_transition-leash#8869
+05-12 23:07:33.574  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:07:33.592  1699  3614 E WindowManager: win=Window{fda6f8b u0 com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=8 caller=com.android.server.wm.ActivityRecord.destroySurfaces:25 com.android.server.wm.ActivityRecord.activityStopped:192 com.android.server.wm.ActivityClientController.activityStopped:97 android.app.IActivityClientController$Stub.onTransact:740 com.android.server.wm.ActivityClientController.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine amplitude : 8750
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine packet_cnt : 5
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine total_size : 20
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine : 20 7 1312 0 0 30 0 0 0 60 21 0 0 15 0 0 0 7 7875 0 0
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: do_on for timeoutMs: 1
+05-12 23:07:33.877  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:1
+05-12 23:07:33.878  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:07:33.878  1390  1390 E SecVibrator-HAL-AIDL-EXT: V_3_0: performHapticEngine OK
+05-12 23:07:34.201  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:07:34.216  1390  1390 E SecVibrator-HAL-AIDL-CORE: V_1_0: Vibrator off
+05-12 23:07:34.216  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: >> writeNode node:/timed_output/vibrator/enable val:0
+05-12 23:07:34.216  1390  1390 E SecVibrator-HAL-AIDL-CORE: HW_API: << writeNode node OK : 2
+05-12 23:07:34.253  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=Task=1)/@0x9f4537c_transition-leash#8875
+05-12 23:07:34.253  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=Task=1)/@0x9f4537c_transition-leash#8875
+05-12 23:07:34.253  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=Task=1)/@0x9f4537c_transition-leash#8875
+05-12 23:07:34.270  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.003 - Surface(name=Task=1)/@0x9f4537c_transition-leash#8875
+05-12 23:07:34.295  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=d933eea InputMethod)/@0xa957b51 - animation-leash of insets_animation#8877
+05-12 23:07:34.463 23970 23984 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+05-12 23:07:34.484 23672 23713 E [PASS][PASS]SamsungKidAccountManager: refreshKidsAccountStatusInternal - failed: Provider returned error code: 1, message: It is not a supported feature
+05-12 23:07:34.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616454
+05-12 23:07:34.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:34.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:34.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:34.511  1473  1473 E SurfaceFlinger: alpha changed 0.003 -> 0.000 - Surface(name=Task=3724)/@0xfc2ec5a_transition-leash#8876
+05-12 23:07:34.520  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:07:34.532  1699  3592 E WindowManager: win=Window{e8aae89 u0 com.sec.android.app.launcher/com.android.quickstep.RecentsActivity} destroySurfaces: appStopped=true cleanupOnResume=false win.mWindowRemovalAllowed=false win.mRemoveOnExit=false win.mViewVisibility=8 caller=com.android.server.wm.ActivityRecord.destroySurfaces:25 com.android.server.wm.ActivityRecord.activityStopped:192 com.android.server.wm.ActivityClientController.activityStopped:97 android.app.IActivityClientController$Stub.onTransact:740 com.android.server.wm.ActivityClientController.onTransact:1 android.os.Binder.execTransactInternal:1462 android.os.Binder.execTransact:1401
+05-12 23:07:35.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616455
+05-12 23:07:35.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:35.506  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:35.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:35.671  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616455671 lastDateWindow=1778610512000
+05-12 23:07:35.906  4137 23991 E pageboostd: alp start : app comsamsungandroidmessaging
+05-12 23:07:35.949  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:36.007  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:07:36.008  4137 23991 E pageboostd: comsamsungandroidmessaging, amt 18902764 scnt 4 fcnt 4
+05-12 23:07:36.008  4137 23991 E pageboostd: alp end : app comsamsungandroidmessaging data_amount 18902764
+05-12 23:07:36.008  4137 23991 E pageboostd: alp halted comsamsungandroidmessaging
+05-12 23:07:36.045 23992 23992 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+05-12 23:07:36.068  3118  3127 E RegiMgr<0>: getImsProfile: found [null] for [RCS]
+05-12 23:07:36.086  3118  3127 E TelephonyManagerWrapper: backup gid: null
+05-12 23:07:36.086  3118  3127 E TelephonyManagerWrapper: backup gid: null
+05-12 23:07:36.086  3118  3127 E TelephonyManagerWrapper: backup gid: null
+05-12 23:07:36.116 23992 24023 E CS/OwnCapabilityManager<0>: queryOwnCapability, cursor null
+05-12 23:07:36.123 23992 24021 E ORC/CustomerFeatureCommon: initDocument
+05-12 23:07:36.134 23992 24012 E CS/CommonDbUtils: transactionMakeFail : Not exist transaction msg
+05-12 23:07:36.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616456
+05-12 23:07:36.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:36.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:36.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:37.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616457
+05-12 23:07:37.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:37.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:37.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:38.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616458
+05-12 23:07:38.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:38.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:38.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:38.712  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616458712 lastDateWindow=1778610512000
+05-12 23:07:38.752  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:38.999  1473  1473 E RefreshRateSelector: Can't find HRR max refresh rate by policy with the same group 1080
+05-12 23:07:39.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616459
+05-12 23:07:39.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:39.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:39.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:40.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616460
+05-12 23:07:40.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:40.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:40.505  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:41.389  4137 24040 E pageboostd: alp start : app comluminaengine
+05-12 23:07:41.391  4137 24040 E pageboostd: comluminaengine, amt 0 scnt 0 fcnt 0
+05-12 23:07:41.392  4137 24040 E pageboostd: comluminaengine, amt 0 scnt 0 fcnt 0
+05-12 23:07:41.392  4137 24040 E pageboostd: alp end : app comluminaengine data_amount 0
+05-12 23:07:41.466  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:07:41.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616461
+05-12 23:07:41.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:41.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:41.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:41.528  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=Task=3799)/@0x1097b22_transition-leash#8892
+05-12 23:07:41.553  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.698 - Surface(name=Task=3799)/@0x1097b22_transition-leash#8892
+05-12 23:07:41.564  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:41.721 24042 24042 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+05-12 23:07:41.747  1699  2746 E SemWifiLinkQualityMonitor: Too old or invalid TMI: currentTime=1778616461747 lastDateWindow=1778610512000
+05-12 23:07:41.869 24042 24042 E AndroidRuntime: FATAL EXCEPTION: main
+05-12 23:07:41.869 24042 24042 E AndroidRuntime: Process: com.lumina.engine, PID: 24042
+05-12 23:07:41.869 24042 24042 E AndroidRuntime: java.lang.NoClassDefFoundError: Failed resolution of: Lorg/tensorflow/lite/gpu/GpuDelegateFactory$Options;
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at org.tensorflow.lite.gpu.GpuDelegate.<init>(GpuDelegate.java:53)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.core.UpscaleManager.setupInterpreter(UpscaleManager.kt:27)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.core.UpscaleManager.<init>(UpscaleManager.kt:21)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.core.LuminaEngine.<init>(LuminaEngine.kt:21)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.MainActivityKt.LuminaMainScreen(MainActivity.kt:50)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ComposableSingletons$MainActivityKt$lambda-1$1.invoke(MainActivity.kt:39)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ComposableSingletons$MainActivityKt$lambda-1$1.invoke(MainActivity.kt:38)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.SurfaceKt$Surface$1.invoke(Surface.kt:132)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.SurfaceKt$Surface$1.invoke(Surface.kt:114)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:228)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.SurfaceKt.Surface-T9BRK9s(Surface.kt:111)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ComposableSingletons$MainActivityKt$lambda-2$1.invoke(MainActivity.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ComposableSingletons$MainActivityKt$lambda-2$1.invoke(MainActivity.kt:34)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:228)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.TextKt.ProvideTextStyle(Text.kt:360)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.MaterialThemeKt$MaterialTheme$1.invoke(MaterialTheme.kt:81)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.MaterialThemeKt$MaterialTheme$1.invoke(MaterialTheme.kt:80)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:228)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.material3.MaterialThemeKt.MaterialTheme(MaterialTheme.kt:73)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ui.theme.ThemeKt.LuminaTheme(Theme.kt:43)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ComposableSingletons$MainActivityKt$lambda-3$1.invoke(MainActivity.kt:34)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at com.lumina.engine.ComposableSingletons$MainActivityKt$lambda-3$1.invoke(MainActivity.kt:33)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.ComposeView.Content(ComposeView.android.kt:428)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AbstractComposeView$ensureCompositionCreated$1.invoke(ComposeView.android.kt:252)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AbstractComposeView$ensureCompositionCreated$1.invoke(ComposeView.android.kt:251)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:228)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.CompositionLocalsKt.ProvideCommonCompositionLocals(CompositionLocals.kt:195)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AndroidCompositionLocals_androidKt$ProvideAndroidCompositionLocals$3.invoke(AndroidCompositionLocals.android.kt:119)
+05-12 23:07:41.869 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AndroidCompositionLocals_androidKt$ProvideAndroidCompositionLocals$3.invoke(AndroidCompositionLocals.android.kt:118)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:228)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AndroidCompositionLocals_androidKt.ProvideAndroidCompositionLocals(AndroidCompositionLocals.android.kt:110)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1$1$2.invoke(Wrapper.android.kt:158)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1$1$2.invoke(Wrapper.android.kt:157)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:228)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1$1.invoke(Wrapper.android.kt:157)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1$1.invoke(Wrapper.android.kt:142)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:108)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.ActualJvm_jvmKt.invokeComposable(ActualJvm.jvm.kt:78)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.ComposerImpl.doCompose(Composer.kt:3340)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.ComposerImpl.composeContent$runtime_release(Composer.kt:3273)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionImpl.composeContent(Composition.kt:588)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.Recomposer.composeInitial$runtime_release(Recomposer.kt:1013)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.runtime.CompositionImpl.setContent(Composition.kt:520)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:142)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:133)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AndroidComposeView.setOnViewTreeOwnersAvailable(AndroidComposeView.android.kt:1191)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition.setContent(Wrapper.android.kt:133)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition.onStateChanged(Wrapper.android.kt:183)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.kt:314)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.lifecycle.LifecycleRegistry.addObserver(LifecycleRegistry.kt:192)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:140)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:133)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at androidx.compose.ui.platform.AndroidComposeView.onAttachedToWindow(AndroidComposeView.android.kt:1266)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.View.dispatchAttachedToWindow(View.java:24320)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3745)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3752)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3752)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3752)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3752)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewRootImpl.performTraversals(ViewRootImpl.java:4578)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewRootImpl.doTraversal(ViewRootImpl.java:3924)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.ViewRootImpl$TraversalRunnable.run(ViewRootImpl.java:12903)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.Choreographer$CallbackRecord.run(Choreographer.java:1901)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.Choreographer$CallbackRecord.run(Choreographer.java:1910)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.Choreographer.doCallbacks(Choreographer.java:1367)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.Choreographer.doFrame(Choreographer.java:1292)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:1870)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.os.Handler.handleCallback(Handler.java:995)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.os.Handler.dispatchMessage(Handler.java:103)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.os.Looper.loopOnce(Looper.java:273)
+05-12 23:07:41.870 24042 24042 E AndroidRuntime:        at android.os.Looper.loop(Looper.java:363)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at android.app.ActivityThread.main(ActivityThread.java:10060)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at java.lang.reflect.Method.invoke(Native Method)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:632)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:975)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime: Caused by: java.lang.ClassNotFoundException: Didn't find class "org.tensorflow.lite.gpu.GpuDelegateFactory$Options" on path: DexPathList[[zip file "/data/app/~~Mk97hHMXORcsdgvgTfkdjQ==/com.lumina.engine-Ydcr7x0HI1e1oSD-rqxcfg==/base.apk"],nativeLibraryDirectories=[/data/app/~~Mk97hHMXORcsdgvgTfkdjQ==/com.lumina.engine-Ydcr7x0HI1e1oSD-rqxcfg==/lib/arm64, /data/app/~~Mk97hHMXORcsdgvgTfkdjQ==/com.lumina.engine-Ydcr7x0HI1e1oSD-rqxcfg==/base.apk!/lib/arm64-v8a, /system/lib64, /system/system_ext/lib64]]
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at java.lang.ClassLoader.loadClass(ClassLoader.java:642)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        at java.lang.ClassLoader.loadClass(ClassLoader.java:578)
+05-12 23:07:41.871 24042 24042 E AndroidRuntime:        ... 92 more
+05-12 23:07:41.913  1699  3594 E ActivityManager: Sending non-protected broadcast com.sec.android.intent.action.APP_HQM_SEND_REQ from system 4780:com.sec.android.diagmonagent/1000 pkg com.sec.android.diagmonagent
+05-12 23:07:41.913  1699  3594 E ActivityManager: java.lang.Throwable
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at com.android.server.am.BroadcastController.checkBroadcastFromSystem(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:252)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at com.android.server.am.BroadcastController.broadcastIntentLockedTraced(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:344)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at com.android.server.am.BroadcastController.broadcastIntentLocked(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:18)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:149)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at android.app.IActivityManager$Stub.onTransact$broadcastIntentWithFeature$(IActivityManager.java:12412)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:3205)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at com.android.server.am.ActivityManagerService.onTransact(qb/106573167 b1053ac3ec2f7c839f91fd2de7335cf17a4e53b4ee4019421ab33bfe7afa21a1:425)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at android.os.Binder.execTransactInternal(Binder.java:1457)
+05-12 23:07:41.913  1699  3594 E ActivityManager:       at android.os.Binder.execTransact(Binder.java:1401)
+05-12 23:07:41.982 24064 24106 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+05-12 23:07:41.995  1278 23777 E libprotobuf-native: [libprotobuf ERROR external/protobuf/src/google/protobuf/message_lite.cc:123] Can't parse message of type "sns_std_sensor_event" because it is missing required fields: (cannot determine missing fields for lite message)
+05-12 23:07:42.054  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:07:42.087 24064 24094 E BufferQueueProducer: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+05-12 23:07:42.088 24064 24094 E android.youtube: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+05-12 23:07:42.139 24064 24064 E YT.mlplayer: setDefaultLoudnessTargetPreferenceState
+05-12 23:07:42.140 24064 24064 E YT.mlplayer: setAudioDrc(enabled=1)
+05-12 23:07:42.212 20771 20771 E IDS_TAG : System UID: no SharedPreferences here, no IDS
+05-12 23:07:42.213 20771 20771 E IDS_TAG : System UID: no SharedPreferences here, no IDS
+05-12 23:07:42.224 20771 20771 E BufferQueueProducer: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+05-12 23:07:42.225 20771 20771 E ng.android.lool: Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+05-12 23:07:42.268  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Surface(name=cd55193 com.samsung.android.lool/com.samsung.android.sm.iafd.dialog.AppErrorDialogActivity)/@0xa0b4471 - animation-leash of window_animation#8906
+05-12 23:07:42.268  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=cd55193 com.samsung.android.lool/com.samsung.android.sm.iafd.dialog.AppErrorDialogActivity)/@0xa0b4471 - animation-leash of window_animation#8906
+05-12 23:07:42.268  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Task=3800#8898
+05-12 23:07:42.271  4137  4137 E pageboostd: Received HALT command code 2
+05-12 23:07:42.276  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.081 - Surface(name=cd55193 com.samsung.android.lool/com.samsung.android.sm.iafd.dialog.AppErrorDialogActivity)/@0xa0b4471 - animation-leash of window_animation#8906
+05-12 23:07:42.276  1473  1473 E SurfaceFlinger: alpha changed 1.000 -> 0.000 - Dim Layer for - Task=3800#8909
+05-12 23:07:42.276  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Dim Layer for - Task=3800#8909
+05-12 23:07:42.284  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.020 - Dim Layer for - Task=3800#8909
+05-12 23:07:42.484  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 0.000 - Surface(name=Task=3799)/@0x1097b22_transition-leash#8892
+05-12 23:07:42.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616462
+05-12 23:07:42.504  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:42.504  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:42.504  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
+05-12 23:07:42.558 24064 24086 E android.youtube: Unable to resolve path '/data/app/~~5vZBK8d7LW5TXhjPZarxaQ==/com.google.android.youtube-JvaEq37fsZgHYrptFNoucw==/base.apk': No such file or directory
+05-12 23:07:42.625  1473  1473 E SurfaceFlinger: alpha changed 0.000 -> 1.000 - Task=3800#8898
+05-12 23:07:43.072  1473  4027 E NativeCustomFrequencyManager: [NativeCFMS] BpCustomFrequencyManager::acquire()
+05-12 23:07:43.482  1298  1470 E ANDR-PERF-UTIL: Failed to update node /proc/24042/sched_boost with value 0
+05-12 23:07:43.483  1298  1470 E ANDR-PERF-OPTSHANDLER: can't reset task 24042
+05-12 23:07:43.483  1298  1470 E ANDR-PERF-RESOURCEQS: Failed to reset optimization [3, 32]
+05-12 23:07:43.504  1455  1466 E HeatmapThread: ECT Thread time in milliseconds: 1778616463
+05-12 23:07:43.505  1455  1466 E HeatmapThread: !@Could not open '/efs/FactoryApp/bsoh', errno = 13
+05-12 23:07:43.505  1455  1466 E HeatmapThread: !@ CAM Could not access BSOH EFS
+05-12 23:07:43.506  1455  1466 E HeatmapThread: !@ CAM New BSOH: 0
